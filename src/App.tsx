@@ -1,13 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import ColorPicker from './Pages/ColorPicker/ColorPicker';
+import styles from './App.module.scss'
 
-function App() {
+const App = () => {
   return (
-    <>
+    <div className={styles.container}>
       <ColorPicker />
-    </>
+    </div>
   );
 }
 
