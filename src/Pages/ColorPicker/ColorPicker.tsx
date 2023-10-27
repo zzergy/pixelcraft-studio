@@ -1,20 +1,20 @@
-import { useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import styles from './ColorPicker.module.scss'
 // import classNames from 'classnames/bind';
 
-const ColorPicker = () => {
-    const [selectedColor, setSelectedColor] = useState<string>()
+interface ColorPickerProps {
+    drawingColor: string
+    setDrawingColor: (color: string) => void
+}
 
+const ColorPicker = ({ drawingColor, setDrawingColor }: ColorPickerProps) => {
     const handleColorChange = (color: ColorResult) => {
-        setSelectedColor(color.hex)
+        setDrawingColor(color.hex)
     }
-
-    console.log(selectedColor)
 
     return (
         <ChromePicker
-            color={selectedColor}
+            color={drawingColor}
             onChange={handleColorChange}
         />
     )
