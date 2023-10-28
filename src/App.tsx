@@ -3,9 +3,7 @@ import styles from './App.module.scss'
 import PixelCanvas from './Pages/Canvas/PixelCanvas';
 import { useState } from 'react';
 import { CanvasParameters } from './types';
-import { ColorResult } from 'react-color';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import Header from './Pages/Header/Header';
 
 const App = () => {
   const initialCanvasParameters: CanvasParameters = {
@@ -20,7 +18,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      <FontAwesomeIcon icon={faEnvelope} size='2x' color='blue' />
+      <Header />
       <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} />
       <PixelCanvas drawingColor={drawingColor} canvasParameters={canvasParameters} />
     </div>
