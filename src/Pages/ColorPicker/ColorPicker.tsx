@@ -1,6 +1,5 @@
 import { ChromePicker, ColorResult } from 'react-color';
 import styles from './ColorPicker.module.scss'
-// import classNames from 'classnames/bind';
 
 interface ColorPickerProps {
     drawingColor: string
