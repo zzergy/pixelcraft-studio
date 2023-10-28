@@ -4,6 +4,7 @@ import PixelCanvas from './Pages/Canvas/PixelCanvas';
 import { useState } from 'react';
 import { CanvasParameters } from './types';
 import Header from './Pages/Header/Header';
+import Homepage from './Pages/Homepage/Homepage';
 
 const App = () => {
   const initialCanvasParameters: CanvasParameters = {
@@ -19,8 +20,9 @@ const App = () => {
   return (
     <div className={styles.container}>
       <Header />
-      <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} />
-      <PixelCanvas drawingColor={drawingColor} canvasParameters={canvasParameters} />
+      <Homepage />
+      {/* <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} /> */}
+      {/* <PixelCanvas drawingColor={drawingColor} canvasParameters={canvasParameters} /> */}
     </div>
   );
 }
