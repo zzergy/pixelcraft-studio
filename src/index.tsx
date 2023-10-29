@@ -6,8 +6,9 @@ import './font.css'
 import 'semantic-ui-css/semantic.min.css'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Homepage from './Pages/Homepage/Homepage';
-import { homepage } from './routes';
-import ErrorPage from './Pages/ErrorPage/ErrorPage';
+import { canvas, homepage } from './routes';
+import ErrorPage from './Shared/ErrorPage/ErrorPage';
+import CanvasPage from './Pages/CanvasPage/CanvasPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -21,6 +22,12 @@ const router = createBrowserRouter([
     path: homepage,
     element: <App />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: canvas,
+    element: <CanvasPage />,
+    errorElement: <ErrorPage />
+
   }
 ]);
 

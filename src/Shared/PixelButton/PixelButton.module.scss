@@ -1,0 +1,23 @@
+.button {
+    color: var(--light);
+    font-family: "Minecraft";
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    padding: 12px;
+    background: var(--eggplant);
+    border: 4px solid var(--eggplant-hover);
+    box-shadow: 5px 5px 0px -1px rgb(0 0 0 / 70%);
+    cursor: pointer;
+
+    &:active {
+        transform: translateY(4px);
+        transform: translateX(4px);
+        box-shadow: none;
+    }
+
+    &.md {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
