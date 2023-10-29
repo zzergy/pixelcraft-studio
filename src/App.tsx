@@ -3,7 +3,7 @@ import styles from './App.module.scss'
 import PixelCanvas from './Pages/Canvas/PixelCanvas';
 import { useState } from 'react';
 import { CanvasParameters } from './types';
-import Header from './Pages/Header/Header';
+import Header from './Shared/Header/Header';
 import Homepage from './Pages/Homepage/Homepage';
 
 const App = () => {
