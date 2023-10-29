@@ -7,6 +7,7 @@ import 'semantic-ui-css/semantic.min.css'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Homepage from './Pages/Homepage/Homepage';
 import { homepage } from './routes';
+import ErrorPage from './Pages/ErrorPage/ErrorPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -14,10 +15,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to={homepage} />,
+    errorElement: <ErrorPage />
   },
   {
     path: homepage,
-    element: <App />
+    element: <App />,
+    errorElement: <ErrorPage />
   }
 ]);
 
