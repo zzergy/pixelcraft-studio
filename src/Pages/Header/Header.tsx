@@ -3,14 +3,14 @@ import styles from './Header.module.scss'
 import { faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import { Popup } from 'semantic-ui-react'
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons'
-import classNames from 'classnames/bind';
 import logoFlask from '../../images/logoFlask.png'
 import { Link } from 'react-router-dom'
+import { homepage } from '../../routes'
 
 const Header = () => {
     return (
         <div className={styles.container}>
-            <Link to={'/homepage'} style={{ height: 26 }}>
+            <Link to={homepage} style={{ height: 26 }}>
                 <img src={logoFlask} alt='logo' height={26} className={styles.logo} />
             </Link>
             <div className={styles.linksContainer} >
