@@ -5,11 +5,14 @@ import { Popup } from 'semantic-ui-react'
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames/bind';
 import logoFlask from '../../images/logoFlask.png'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <div className={styles.container}>
-            <img src={logoFlask} alt='logo' height={26} className={styles.logo} />
+            <Link to={'/homepage'} style={{ height: 26 }}>
+                <img src={logoFlask} alt='logo' height={26} className={styles.logo} />
+            </Link>
             <div className={styles.linksContainer} >
                 <Popup content='Source code'
                     trigger={
