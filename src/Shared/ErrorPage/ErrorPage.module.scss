@@ -1,11 +1,11 @@
 .container {
     height: 100%;
-    background-color: var(--eggplant-background);
+    background-color: var(--purple-background);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: var(--eggplant-hover);
+    color: var(--hover-purple);
 
     .text {
         letter-spacing: 1px;
