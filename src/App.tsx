@@ -1,10 +1,12 @@
-import ColorPicker from './Pages/ColorPicker/ColorPicker';
 import styles from './App.module.scss'
-import PixelCanvas from './Pages/Canvas/PixelCanvas';
 import { useState } from 'react';
 import { CanvasParameters } from './types';
 import Header from './Shared/Header/Header';
 import Homepage from './Pages/Homepage/Homepage';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { canvas, homepage } from './routes';
+import ErrorPage from './Shared/ErrorPage/ErrorPage';
+import CanvasPage from './Pages/CanvasPage/CanvasPage';
 
 const App = () => {
   const initialCanvasParameters: CanvasParameters = {
@@ -17,13 +19,28 @@ const App = () => {
   const [canvasParameters, setCanvasParameters] = useState<CanvasParameters>(initialCanvasParameters)
   const [drawingColor, setDrawingColor] = useState<string>('#ededed')
 
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate to={homepage} />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: homepage,
+      element: <App />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: canvas,
+      element: <CanvasPage />,
+      errorElement: <ErrorPage />
+
+    }
+  ]);
   return (
-    <div className={styles.container}>
-      <Header />
-      <Homepage />
-      {/* <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} /> */}
-      {/* <PixelCanvas drawingColor={drawingColor} canvasParameters={canvasParameters} /> */}
-    </div>
+    <RouterProvider router={router} />
+
   );
 }
 
