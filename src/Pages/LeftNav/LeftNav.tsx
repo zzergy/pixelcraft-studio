@@ -1,11 +1,11 @@
-import File from './File/File'
+import FileIcon from './FileIcon/FileIcon'
 import styles from './LeftNav.module.scss'
 
 const LeftNav = () => {
 
     return (
         <div className={styles.container}>
-            <File />
+            <FileIcon />
         </div>
     )
 }
