@@ -6,7 +6,7 @@ interface ButtonProps {
     size?: 'md'
 }
 
-const Button = ({ label, size, onClick }: ButtonProps) => {
+const Button = ({ label, size = 'md', onClick }: ButtonProps) => {
     const classnames = require('classnames')
     return (
         <button className={classnames(styles.button, styles[size])} onClick={onClick}>{label}</button>
