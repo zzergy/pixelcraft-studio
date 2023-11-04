@@ -13,21 +13,21 @@ const PixelCanvas = ({ canvasParameters, drawingColor }: PixelCanvasProps) => {
     const [pixels, setPixels] = useState<string[][]>(initialEmptyCanvas)
 
     // checkered pattern background idea 
-    const initiateCheckeredPixels = () => {
-        const updatedPixels = [...pixels.map(row => [...row])];
+    // const initiateCheckeredPixels = () => {
+    //     const updatedPixels = [...pixels.map(row => [...row])];
 
-        for (let x = 0; x < rows; x++) {
-            for (let y = 0; y < columns; y++) {
-                if ((x + y) % 2 === 0) {
-                    updatedPixels[x][y] = 'lightGray'; // Set the first checker color
-                } else {
-                    updatedPixels[x][y] = 'white'; // Set the second checker color
-                }
-            }
-        }
+    //     for (let x = 0; x < rows!; x++) {
+    //         for (let y = 0; y < columns!; y++) {
+    //             if ((x + y) % 2 === 0) {
+    //                 updatedPixels[x][y] = 'lightGray'; // Set the first checker color
+    //             } else {
+    //                 updatedPixels[x][y] = 'white'; // Set the second checker color
+    //             }
+    //         }
+    //     }
 
-        setPixels(updatedPixels)
-    }
+    //     setPixels(updatedPixels)
+    // }
 
     const handleDraw = (x: number, y: number) => {
         const updatedPixels = [...pixels.map(row => [...row])];

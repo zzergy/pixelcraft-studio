@@ -7,30 +7,21 @@ import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { canvas, homepage } from './routes';
 import ErrorPage from './Shared/ErrorPage/ErrorPage';
 import CanvasPage from './Pages/CanvasPage/CanvasPage';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const App = () => {
-  const initialCanvasParameters: CanvasParameters = {
-    rows: 15,
-    columns: 15,
-    baseColor: 'white',
-    gridColor: '#ededed'
-  }
-
-  const [canvasParameters, setCanvasParameters] = useState<CanvasParameters>(initialCanvasParameters)
-  const [drawingColor, setDrawingColor] = useState<string>('#ededed')
-
-
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Navigate to={homepage} />,
-      errorElement: <ErrorPage />
-    },
-    {
       path: homepage,
-      element: <App />,
+      element: <Homepage />,
       errorElement: <ErrorPage />
     },
+    // {
+    //   path: homepage,
+    //   element: <App />,
+    //   errorElement: <ErrorPage />
+    // },
     {
       path: canvas,
       element: <CanvasPage />,
@@ -39,8 +30,9 @@ const App = () => {
     }
   ]);
   return (
-    <RouterProvider router={router} />
-
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   );
 }
 
