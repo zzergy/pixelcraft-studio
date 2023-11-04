@@ -1,0 +1,14 @@
+.container {
+    height: 100%;
+    background-color: var(--purple-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--hover-purple);
+
+    .text {
+        letter-spacing: 1px;
+        text-align: center;
+    }
+}

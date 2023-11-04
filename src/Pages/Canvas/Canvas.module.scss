@@ -1,0 +1,13 @@
+.container {
+    padding: 20px;
+    .canvasRow {
+        display: flex;
+        width: 150px;
+
+        .canvasColumn {
+            width: 10px;
+            height: 10px;
+            border: 0.5px solid;
+        }
+    }
+}

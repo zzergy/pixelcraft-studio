@@ -1,0 +1,36 @@
+.container {
+    // position: sticky;
+    // top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    background-color: var(--deep-gray);
+    border-bottom: 1px solid #373737;
+    padding: 0 12px 0 6px;
+
+    .logo {
+        height: 26px;
+        cursor: pointer;
+    }
+
+    .linksContainer {
+        .link {
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+
+            &:nth-child(1) {
+                padding-right: 12px;
+            }
+            .medium {
+                font-size: 24px;
+            }
+
+            .small {
+                font-size: 20px;
+            }
+        }
+    }
+}
