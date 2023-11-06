@@ -1,23 +1,34 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CanvasParameters } from "../types";
+import { CanvasParameters, Dimentions } from "../types";
 
 const initialCanvasParameters: CanvasParameters = {
   rows: 15,
   columns: 15,
   baseColor: 'white',
-  gridColor: '#ededed'
+  gridColor: '#ededed',
+  pixels: Array(15).fill(Array(15).fill('white'))
 }
 
 const canvasReducer = createSlice({
-  name: 'canvasParameters',
+  name: 'canvas',
   initialState: initialCanvasParameters,
   reducers: {
-    setCanvasParameters: (state: typeof initialCanvasParameters, action: PayloadAction<CanvasParameters>) => (
-      { ...state, ...action.payload }
+    setCanvasSize: (state: typeof initialCanvasParameters, action: PayloadAction<Dimentions>) => (
+      {
+        ...state,
+        ...action.payload,
+        pixels: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
+      }
+    ),
+    setPixels: (state: typeof initialCanvasParameters, action: PayloadAction<string[][]>) => (
+      {
+        ...state,
+        pixels: action.payload,
+      }
     )
   }
 })
 
-export const { setCanvasParameters } = canvasReducer.actions
+export const { setCanvasSize, setPixels } = canvasReducer.actions
 
 export default canvasReducer.reducer

@@ -1,4 +1,9 @@
 .container {
     height: 100%;
     background-color: var(--medium-gray);
+
+    .content {
+        display: flex;
+        height: 100%;
+    }
 }
