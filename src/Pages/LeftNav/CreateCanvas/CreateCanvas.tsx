@@ -42,7 +42,7 @@ const CreateCanvas = () => {
             trigger={
                 <FontAwesomeIcon
                     icon={iconHover.file ? faFile : faFileRegular}
-                    className={styles.icon}
+                    className={classnames(styles.icon, styles.selectable)}
                     onMouseOver={() => handleMouseOver('file')}
                     onMouseOut={() => handleMouseOut('file')}
                 />}
@@ -51,7 +51,7 @@ const CreateCanvas = () => {
                 <div>
                     <FontAwesomeIcon
                         icon={faFileRegular}
-                        className={classnames(styles.icon, styles.selectable)}
+                        className={styles.icon}
                     />
                     <span className={styles.titleText}>New Drawing Canvas</span>
                 </div>
@@ -65,8 +65,9 @@ const CreateCanvas = () => {
                 <div className={styles.section}>
                     <label className={styles.label} htmlFor='width'>Width</label>
                     <input
-                        name='rows'
-                        value={canvasDimentions.rows}
+                        id='width'
+                        name='columns'
+                        value={canvasDimentions.columns}
                         onChange={(event) => handleChangeInput(event)}
                     />
                 </div>
@@ -74,8 +75,8 @@ const CreateCanvas = () => {
                     <label className={styles.label} htmlFor="height">Height</label>
                     <input
                         id='height'
-                        name='columns'
-                        value={canvasDimentions.columns}
+                        name='rows'
+                        value={canvasDimentions.rows}
                         onChange={(event) => handleChangeInput(event)}
                     />
                 </div>
