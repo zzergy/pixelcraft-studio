@@ -1,14 +1,12 @@
-import styles from './App.module.scss'
-import { useState } from 'react';
-import { CanvasParameters } from './types';
 import Header from './Shared/Header/Header';
 import Homepage from './Pages/Homepage/Homepage';
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { canvas, homepage } from './routes';
 import ErrorPage from './Shared/ErrorPage/ErrorPage';
 import CanvasPage from './Pages/CanvasPage/CanvasPage';
 import { Provider } from 'react-redux';
 import store from './store';
+import { ConfigProvider } from 'antd';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -17,11 +15,6 @@ const App = () => {
       element: <Homepage />,
       errorElement: <ErrorPage />
     },
-    // {
-    //   path: homepage,
-    //   element: <App />,
-    //   errorElement: <ErrorPage />
-    // },
     {
       path: canvas,
       element: <CanvasPage />,
@@ -29,10 +22,33 @@ const App = () => {
 
     }
   ]);
+
+  const theme = {
+    token: {
+      colorInfo: "#6c1a99",
+      colorSuccess: "#00c6b3",
+      colorWarning: "#ff8051",
+      colorLink: "#c10784",
+      colorError: "#f44269",
+      colorTextBase: "#292929"
+    },
+    components: {
+      Tooltip: {
+        colorBgSpotlight: "white",
+        colorTextLightSolid: "black",
+        paddingSM: 4,
+        controlHeight: 12
+      }
+    }
+  }
+
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <ConfigProvider theme={theme}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ConfigProvider>
+
   );
 }
 
