@@ -6,7 +6,7 @@ import ErrorPage from './Shared/ErrorPage/ErrorPage';
 import CanvasPage from './Pages/CanvasPage/CanvasPage';
 import { Provider } from 'react-redux';
 import store from './store';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,8 +23,9 @@ const App = () => {
     }
   ]);
 
-  const theme = {
+  const customTheme = {
     token: {
+      colorPrimary: "6c1a99",
       colorInfo: "#6c1a99",
       colorSuccess: "#00c6b3",
       colorWarning: "#ff8051",
@@ -38,12 +39,31 @@ const App = () => {
         colorTextLightSolid: "black",
         paddingSM: 4,
         controlHeight: 12
+      },
+      Modal: {
+        contentBg: "#282828",
+        headerBg: "#282828",
+        titleColor: "white",
+        colorIcon: "rgba(255, 255, 255, 0.45)",
+        colorIconHover: "rgb(255, 255, 255)",
+        colorText: "white"
       }
-    }
+      // "InputNumber": {
+      //   "activeBorderColor": "rgb(114, 46, 209)",
+      //   "handleHoverColor": "rgb(77, 11, 113)",
+      //   "hoverBorderColor": "rgb(77, 11, 113)",
+      //   "handleBg": "rgba(139, 139, 139, 0.75)",
+      //   "colorBgContainer": "rgb(80, 80, 80)",
+      //   "colorText": "rgba(255, 255, 255, 0.88)",
+      //   "handleBorderColor": "rgba(110, 110, 110, 0.45)"
+      // }
+    },
+    algorithm: theme.darkAlgorithm,
+
   }
 
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={customTheme}>
       <Provider store={store}>
         <RouterProvider router={router} />
       </Provider>

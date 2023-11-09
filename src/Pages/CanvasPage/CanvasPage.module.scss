@@ -1,9 +1,9 @@
 .container {
-    height: 100%;
+    height: inherit;
     background-color: var(--medium-gray);
 
     .content {
         display: flex;
-        height: 100%;
+        height: calc(100% - 40px);
     }
 }
