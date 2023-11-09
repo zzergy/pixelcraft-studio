@@ -7,13 +7,18 @@ import { useState } from "react";
 import { Dimentions } from "../../../types";
 import { useDispatch } from "react-redux";
 import { setCanvasSize } from "../../../slices/canvasSlice";
-import { Button, InputNumber, Modal } from 'antd';
+import { Button, InputNumber, Modal, message } from 'antd';
 
 const CreateCanvas = () => {
+    const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
     const initialDimentions = { rows: 15, columns: 15 }
+    const [messageApi, contextHolder] = message.useMessage();
+
     const dispatch = useDispatch();
     const classnames = require('classnames')
     const { iconHover, handleMouseOver, handleMouseOut } = useIconHover();
+
+    const [error, setError] = useState({ rows: false, columns: false });
     const [open, setOpen] = useState(false);
     const [canvasDimentions, setCanvasDimentions] = useState<Dimentions>(initialDimentions)
     const presetCanvasSizes: ['5x5', '15x15', '25x25', '60x60'] = ['5x5', '15x15', '25x25', '60x60']
@@ -21,23 +26,41 @@ const CreateCanvas = () => {
     const handleCreateCanvas = () => {
         dispatch(setCanvasSize(canvasDimentions))
         handleClose()
+        success()
     }
 
     const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setCanvasDimentions({ ...canvasDimentions, [name]: parseInt(value) })
+
+        if (!validationPattern.test(value)) {
+            setError({ ...error, [name]: true })
+            return
+        }
+
+        setError({ ...error, [name]: false })
     }
 
     const handleClickCanvasOption = (rows: number, columns: number) => {
         setCanvasDimentions({ ...canvasDimentions, rows, columns })
     }
+
     const handleClose = () => {
         setOpen(false)
+        setError({ columns: false, rows: false })
         setCanvasDimentions(initialDimentions)
     }
 
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'Yay, your canvas is all set!',
+        });
+    };
+
     return (
         <>
+            {contextHolder}
             <FontAwesomeIcon
                 icon={iconHover.file ? faFile : faFileRegular}
                 className={classnames(styles.icon, styles.selectable)}
@@ -67,19 +90,23 @@ const CreateCanvas = () => {
                         <input
                             id='width'
                             name='columns'
+                            className={classnames(styles.input, error.columns && styles.error)}
                             defaultValue={canvasDimentions.columns}
-                            value={!canvasDimentions.columns ? 0 : canvasDimentions.columns}
+                            value={!canvasDimentions.columns ? '' : canvasDimentions.columns}
                             onChange={(event) => handleChangeInput(event)}
                         />
+                        {error.columns && <div className={styles.errorMessage}>Canvas width must be between 5 and 60</div>}
                     </div>
                     <div className={styles.section}>
                         <label className={styles.label} htmlFor="height">Height</label>
                         <input
                             id='height'
                             name='rows'
-                            value={!canvasDimentions.rows ? 0 : canvasDimentions.rows}
+                            className={classnames(styles.input, error.rows && styles.error)}
+                            value={!canvasDimentions.rows ? '' : canvasDimentions.rows}
                             onChange={(event) => handleChangeInput(event)}
                         />
+                        {error.rows && <div className={styles.errorMessage}>Canvas height must be between 5 and 60</div>}
                     </div>
 
                     <div className={styles.label}>Preset Canvas Sizes</div>
@@ -102,7 +129,7 @@ const CreateCanvas = () => {
                     </div>
                 </div>
                 <div className={styles.createCanvas}>
-                    <Button onClick={handleCreateCanvas} size='large' type='primary'>Create Canvas</Button>
+                    <Button disabled={error.columns || error.rows} onClick={handleCreateCanvas} size='large' type='primary'>Create Canvas</Button>
                 </div>
             </Modal>
         </>

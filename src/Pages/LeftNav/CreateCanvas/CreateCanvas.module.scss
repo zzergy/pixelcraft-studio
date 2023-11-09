@@ -29,12 +29,12 @@
         display: flex;
         flex-direction: column;
 
-        input {
+        .input {
             padding: 12px;
             border-radius: 6px;
             border: 1px solid var(--hover-gray);
 
-            background: var(--hover-gray);
+            background: var(--medium-gray);
             color: var(--light);
 
             ::selection {
@@ -45,8 +45,18 @@
             &:active,
             &:focus {
                 outline: none;
-                border: 1px solid var(--light-gray);
+                border-color: var(--light-gray);
             }
+
+            &.error {
+                color: var(--error);
+                border-color: var(--error);
+            }
+        }
+
+        .errorMessage {
+            color: var(--error);
+            padding-top: 4px;
         }
     }
 
