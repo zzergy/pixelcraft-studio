@@ -6,7 +6,7 @@ export const customTheme = {
         colorInfo: "#6c1a99",
         colorSuccess: "#00c6b3",
         colorWarning: "#ff8051",
-        colorLink: "#c10784",
+        colorLink: "#ff6dce",
         colorError: "#f44269",
         colorTextBase: "#292929",
         colorText: 'white'

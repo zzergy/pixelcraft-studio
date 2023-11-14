@@ -5,5 +5,23 @@
     .content {
         display: flex;
         height: calc(100% - 40px);
+
+        .emptyCanvas {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .heart {
+                color: var(--error);
+                font-size: 80px;
+                margin: 6px;
+            }
+
+            .text {
+                color: #ffffffa1;
+            }
+        }
     }
 }

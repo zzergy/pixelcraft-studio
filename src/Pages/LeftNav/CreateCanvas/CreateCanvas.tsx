@@ -11,7 +11,7 @@ import { Button, InputNumber, Modal, message } from 'antd';
 
 const CreateCanvas = () => {
     const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
-    const initialDimentions = { rows: 15, columns: 15 }
+    const initialDimentions = { rows: 0, columns: 0 }
     const [messageApi, contextHolder] = message.useMessage();
 
     const dispatch = useDispatch();
@@ -91,7 +91,6 @@ const CreateCanvas = () => {
                             id='width'
                             name='columns'
                             className={classnames(styles.input, error.columns && styles.error)}
-                            defaultValue={canvasDimentions.columns}
                             value={!canvasDimentions.columns ? '' : canvasDimentions.columns}
                             onChange={(event) => handleChangeInput(event)}
                         />
@@ -103,7 +102,7 @@ const CreateCanvas = () => {
                             id='height'
                             name='rows'
                             className={classnames(styles.input, error.rows && styles.error)}
-                            value={!canvasDimentions.rows ? '' : canvasDimentions.rows}
+                            value={!canvasDimentions.rows ? "" : canvasDimentions.rows}
                             onChange={(event) => handleChangeInput(event)}
                         />
                         {error.rows && <div className={styles.errorMessage}>Canvas height must be between 5 and 60</div>}
@@ -129,7 +128,7 @@ const CreateCanvas = () => {
                     </div>
                 </div>
                 <div className={styles.createCanvas}>
-                    <Button disabled={error.columns || error.rows} onClick={handleCreateCanvas} size='large' type='primary'>Create Canvas</Button>
+                    <Button disabled={error.columns || error.rows || !canvasDimentions.rows || !canvasDimentions.columns} onClick={handleCreateCanvas} size='large' type='primary'>Create Canvas</Button>
                 </div>
             </Modal>
         </>

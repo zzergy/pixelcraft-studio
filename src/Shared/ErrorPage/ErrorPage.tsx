@@ -1,4 +1,4 @@
-import { faFaceFrown } from "@fortawesome/free-regular-svg-icons"
+import { IconDefinition, faFaceFrown } from "@fortawesome/free-regular-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from './ErrorPage.module.scss'
 import PixelButton from "../PixelButton/PixelButton"

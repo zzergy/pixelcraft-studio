@@ -50,9 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/react-color": "^3.0.9",
-    "react-color": "^2.19.3"
   }
 }

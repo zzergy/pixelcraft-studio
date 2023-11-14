@@ -5,15 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setPixels } from "../../slices/canvasSlice";
 
-interface PixelCanvasProps {
+interface CanvasProps {
     drawingColor: string
 }
 
-const PixelCanvas = ({ drawingColor }: PixelCanvasProps) => {
+const Canvas = ({ drawingColor }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
     const dispatch = useDispatch()
     const { gridColor, pixels } = canvasParameters
-    console.log(canvasParameters)
+
     const handleDraw = (x: number, y: number) => {
         const updatedPixels = [...pixels.map(row => [...row])];
         updatedPixels[x][y] = drawingColor;
@@ -37,4 +37,4 @@ const PixelCanvas = ({ drawingColor }: PixelCanvasProps) => {
     </div >
 }
 
-export default PixelCanvas
+export default Canvas
