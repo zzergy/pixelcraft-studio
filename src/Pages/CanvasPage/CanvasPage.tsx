@@ -8,15 +8,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeartCrack } from "@fortawesome/free-solid-svg-icons"
 
 const CanvasPage = () => {
-    const { pixels } = useSelector((state: RootState) => state.canvasParameters)
-    console.log(pixels)
+    const { pixelsGrid } = useSelector((state: RootState) => state.canvasParameters)
+
     return (
         <div className={styles.container}>
             <Header />
             <div className={styles.content}>
                 <LeftNav />
                 {/* <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} /> */}
-                {pixels[0].length === 0 ?
+                {pixelsGrid[0].length === 0 ?
                     <div className={styles.emptyCanvas}>
                         <FontAwesomeIcon icon={faHeartCrack} className={styles.heart} />
                         <p className={styles.text}>Oops! No canvas found!</p>

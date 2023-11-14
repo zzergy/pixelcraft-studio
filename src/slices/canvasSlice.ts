@@ -6,7 +6,7 @@ const initialCanvasParameters: CanvasParameters = {
   columns: 15,
   baseColor: 'white',
   gridColor: '#ededed',
-  pixels: [Array(0).fill(Array(0).fill('white'))]
+  pixelsGrid: [Array(0).fill(Array(0).fill('white'))]
 }
 
 const canvasReducer = createSlice({
