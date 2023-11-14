@@ -6,7 +6,7 @@ const initialCanvasParameters: CanvasParameters = {
   columns: 15,
   baseColor: 'white',
   gridColor: '#ededed',
-  pixels: [Array(0).fill(Array(0).fill('white'))]
+  pixelsGrid: [Array(0).fill(Array(0).fill('white'))]
 }
 
 const canvasReducer = createSlice({
@@ -20,7 +20,7 @@ const canvasReducer = createSlice({
         pixels: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
       }
     ),
-    setPixels: (state: typeof initialCanvasParameters, action: PayloadAction<string[][]>) => (
+    setPixelsGrid: (state: typeof initialCanvasParameters, action: PayloadAction<string[][]>) => (
       {
         ...state,
         pixels: action.payload,
@@ -29,6 +29,6 @@ const canvasReducer = createSlice({
   }
 })
 
-export const { setCanvasSize, setPixels } = canvasReducer.actions
+export const { setCanvasSize, setPixelsGrid } = canvasReducer.actions
 
 export default canvasReducer.reducer

@@ -3,7 +3,7 @@ export interface CanvasParameters {
     columns: number,
     baseColor: string,
     gridColor: string,
-    pixels: string[][]
+    pixelsGrid: string[][]
 }
 
 //allows you to get a property from another interface into your type
