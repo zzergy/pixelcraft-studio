@@ -1,4 +1,4 @@
-import { faFile, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faFile } from '@fortawesome/free-solid-svg-icons'
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
 import useIconHover from '../../../hooks/useIconHover';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Dimentions } from "../../../types";
 import { useDispatch } from "react-redux";
 import { setCanvasSize } from "../../../slices/canvasSlice";
-import { Button, InputNumber, Modal, message } from 'antd';
+import { Button, Modal, message } from 'antd';
 
 const CreateCanvas = () => {
     const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
@@ -54,7 +54,7 @@ const CreateCanvas = () => {
     const success = () => {
         messageApi.open({
             type: 'success',
-            content: 'Yay, your canvas is all set!',
+            content: 'Your canvas is all set!',
         });
     };
 

@@ -17,13 +17,13 @@ const canvasReducer = createSlice({
       {
         ...state,
         ...action.payload,
-        pixels: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
+        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
       }
     ),
     setPixelsGrid: (state: typeof initialCanvasParameters, action: PayloadAction<string[][]>) => (
       {
         ...state,
-        pixels: action.payload,
+        pixelsGrid: action.payload,
       }
     )
   }

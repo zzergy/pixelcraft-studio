@@ -2,7 +2,6 @@ import styles from './Canvas.module.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setPixelsGrid } from "../../slices/canvasSlice";
-
 interface CanvasProps {
     drawingColor: string
 }

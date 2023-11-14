@@ -4,9 +4,10 @@ import { canvas, homepage } from './routes';
 import ErrorPage from './Shared/ErrorPage/ErrorPage';
 import CanvasPage from './Pages/CanvasPage/CanvasPage';
 import { Provider } from 'react-redux';
-import store from './store';
+import store, { persistor } from './store';
 import { ConfigProvider } from 'antd';
 import { customTheme } from './customTheme';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -26,7 +27,9 @@ const App = () => {
   return (
     <ConfigProvider theme={customTheme}>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </ConfigProvider>
   );
