@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CanvasParameters, Dimentions, ModalStates } from "../types";
+import { ModalStates } from "../types";
 
 const initialModalStates: ModalStates = {
     deleteCanvasModal: false,
-    createCanvasModal: false
+    createCanvasModal: false,
+    clearCanvasModal: false
 }
 
 const modalsReducer = createSlice({

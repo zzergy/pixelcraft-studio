@@ -1,6 +1,4 @@
-import { faFile } from '@fortawesome/free-solid-svg-icons'
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
-import useIconHover from '../../../../hooks/useIconHover';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './CreateCanvas.module.scss'
 import { useState } from "react";

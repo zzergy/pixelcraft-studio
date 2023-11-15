@@ -31,10 +31,17 @@ const canvasReducer = createSlice({
         ...state,
         pixelsGrid: initialCanvasParameters.pixelsGrid
       }
+    ),
+    clearCanvas: (state: typeof initialCanvasParameters, action: PayloadAction<Dimentions>) => (
+      {
+        ...state,
+        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
+
+      }
     )
   }
 })
 
-export const { setCanvasSize, setPixelsGrid, deleteCanvas } = canvasReducer.actions
+export const { setCanvasSize, setPixelsGrid, deleteCanvas, clearCanvas } = canvasReducer.actions
 
 export default canvasReducer.reducer

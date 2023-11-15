@@ -9,9 +9,12 @@
 
 .list {
     .listItem {
-        border-bottom: 1px solid #ffffff26;
         padding: 6px 12px;
         font-size: 13px;
+
+        &:not(&:nth-child(1)) {
+            border-top: 1px solid #ffffff26;
+        }
 
         &:hover {
             cursor: pointer;

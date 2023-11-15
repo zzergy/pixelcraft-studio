@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Popover, Tooltip } from "antd"
+import { Popover } from "antd"
 import { useRef, useState } from "react"
 import styles from './FileMenu.module.scss'
 import useIconHover from "../../../hooks/useIconHover";
@@ -8,8 +8,10 @@ import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { setModalState } from "../../../slices/modalsSlice";
 import CreateCanvas from "./CreateCanvas/CreateCanvas";
-import DeleteCanvas from "./DeleteCanvas/DeleteCanvas";
 import { RootState } from "../../../store";
+import { ModalTypes } from "../../../types";
+import ConfirmModal from "../../../Shared/ConfirmModal/ConfirmModal";
+import { clearCanvas, deleteCanvas } from "../../../slices/canvasSlice";
 
 
 const FileMenu = () => {
@@ -19,17 +21,29 @@ const FileMenu = () => {
     const { iconHover, handleMouseOver, handleMouseOut } = useIconHover();
 
     const [open, setOpen] = useState<boolean>(false);
-    const { pixelsGrid } = useSelector((state: RootState) => state.canvasParameters)
+    const { pixelsGrid, rows, columns } = useSelector((state: RootState) => state.canvasParameters)
+    const { clearCanvasModal, deleteCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
+
     const handleOpenModal = (modal: any) => {
         setOpen(!open)
         dispatch(setModalState({ [modal]: true }))
     }
 
+    const isDrawingOnCanvas = pixelsGrid.some((row) => row.some((pixel) => pixel !== 'white'));
+
     const data = [
-        { title: 'New', modalName: 'createCanvasModal', visible: true },
-        { title: 'Clear', modalName: 'clearCanvasModal', visible: pixelsGrid[0].length !== 0 },
-        { title: 'Delete Canvas', modalName: 'deleteCanvasModal', visible: pixelsGrid[0].length !== 0 },
+        { title: 'New', modalName: ModalTypes.create, visible: true },
+        { title: 'Clear', modalName: ModalTypes.clear, visible: pixelsGrid[0].length !== 0 && isDrawingOnCanvas },
+        { title: 'Delete Canvas', modalName: ModalTypes.delete, visible: pixelsGrid[0].length !== 0 },
     ]
+
+    const handleClearCanvas = () => {
+        dispatch(clearCanvas({ rows, columns }))
+    }
+
+    const handleDeleteCanvas = () => {
+        dispatch(deleteCanvas())
+    }
 
     return (
         <>
@@ -62,8 +76,26 @@ const FileMenu = () => {
                     onMouseOut={() => handleMouseOut('file')}
                 />
             </Popover>
+
             <CreateCanvas />
-            <DeleteCanvas />
+            <ConfirmModal
+                open={clearCanvasModal!}
+                modalName={ModalTypes.clear}
+                title="Clear Canvas?"
+                content={<p>This action cannot be reversed.</p>}
+                confirmButton={{
+                    text: 'Yes', action: handleClearCanvas
+                }}
+            />
+            <ConfirmModal
+                open={deleteCanvasModal!}
+                modalName={ModalTypes.delete}
+                title="Are you sure you want to delete your canvas?"
+                content={<p>This action cannot be reversed.</p>}
+                confirmButton={{
+                    text: 'Delete', action: handleDeleteCanvas
+                }}
+            />
         </>
     )
 }

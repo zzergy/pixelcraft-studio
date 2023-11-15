@@ -8,7 +8,14 @@ export interface CanvasParameters {
 
 export interface ModalStates {
     deleteCanvasModal?: boolean,
-    createCanvasModal?: boolean
+    createCanvasModal?: boolean,
+    clearCanvasModal?: boolean
+}
+
+export enum ModalTypes {
+    clear = 'clearCanvasModal',
+    create = 'createCanvasModal',
+    delete = 'deleteCanvasModal'
 }
 
 //allows you to get a property from another interface into your type

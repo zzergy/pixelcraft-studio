@@ -28,7 +28,8 @@ export const customTheme = {
             colorText: "#ffffff"
         },
         Button: {
-            "colorTextDisabled": "rgba(255, 255, 255, 0.35)"
+            "colorTextDisabled": "rgba(255, 255, 255, 0.35)",
+            defaultBg: '#282828'
         },
         Popover: {
             colorBgElevated: "#282828"
