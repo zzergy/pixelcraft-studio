@@ -2,12 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover, Tooltip } from "antd"
 import { useRef, useState } from "react"
 import styles from './FileMenu.module.scss'
-import useIconHover from "../../../../hooks/useIconHover";
+import useIconHover from "../../../hooks/useIconHover";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from "react-redux";
-import { setModalState } from "../../../../slices/modalsSlice";
-import CreateCanvas from "./CreateCanvas";
+import { setModalState } from "../../../slices/modalsSlice";
+import CreateCanvas from "./CreateCanvas/CreateCanvas";
+import DeleteCanvas from "./DeleteCanvas/DeleteCanvas";
 
 
 const FileMenu = () => {
@@ -59,6 +60,7 @@ const FileMenu = () => {
                 />
             </Popover>
             <CreateCanvas />
+            <DeleteCanvas />
         </>
     )
 }
