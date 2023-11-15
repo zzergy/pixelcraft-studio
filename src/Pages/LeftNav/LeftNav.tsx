@@ -1,11 +1,11 @@
-import CreateCanvas from './CreateCanvas/CreateCanvas'
+import FileMenu from './FileMenu/CreateCanvas/FileMenu'
 import styles from './LeftNav.module.scss'
 
 const LeftNav = () => {
 
     return (
         <div className={styles.container}>
-            <CreateCanvas />
+            <FileMenu />
         </div>
     )
 }

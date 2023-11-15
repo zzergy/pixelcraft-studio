@@ -28,6 +28,9 @@ export const customTheme = {
         },
         Button: {
             "colorTextDisabled": "rgba(255, 255, 255, 0.35)"
+        },
+        Popover: {
+            colorBgElevated: "#282828"
         }
     },
     algorithm: theme.darkAlgorithm,

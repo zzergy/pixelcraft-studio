@@ -20,3 +20,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.ant-popover .ant-popover-inner {
+  padding: 0px !important;
+}

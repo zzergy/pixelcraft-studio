@@ -1,0 +1,40 @@
+.icon {
+    font-size: 20px;
+    color: var(--light);
+
+    &.selectable {
+        cursor: pointer;
+    }
+}
+
+.list {
+    .listItem {
+        border-bottom: 1px solid #ffffff26;
+        padding: 6px 12px;
+        font-size: 13px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #ffffff26;
+        }
+
+        &:first-child {
+            &:hover {
+                border-top-right-radius: 8px;
+                border-top-left-radius: 8px;
+            }
+        }
+
+        &:last-child {
+            color: var(--error);
+            &:hover {
+                border-bottom-right-radius: 8px;
+                border-bottom-left-radius: 8px;
+            }
+        }
+
+        &:nth-child(3) {
+            border: none;
+        }
+    }
+}

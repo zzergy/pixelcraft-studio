@@ -1,13 +1,15 @@
 import { faFile } from '@fortawesome/free-solid-svg-icons'
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
-import useIconHover from '../../../hooks/useIconHover';
+import useIconHover from '../../../../hooks/useIconHover';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './CreateCanvas.module.scss'
 import { useState } from "react";
-import { Dimentions } from "../../../types";
-import { useDispatch } from "react-redux";
-import { setCanvasSize } from "../../../slices/canvasSlice";
+import { Dimentions } from "../../../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { setCanvasSize } from "../../../../slices/canvasSlice";
 import { Button, Modal, message } from 'antd';
+import { RootState } from '../../../../store';
+import { setModalState } from '../../../../slices/modalsSlice';
 
 const CreateCanvas = () => {
     const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
@@ -16,10 +18,9 @@ const CreateCanvas = () => {
 
     const dispatch = useDispatch();
     const classnames = require('classnames')
-    const { iconHover, handleMouseOver, handleMouseOut } = useIconHover();
 
+    const { createCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
     const [error, setError] = useState({ rows: false, columns: false });
-    const [open, setOpen] = useState(false);
     const [canvasDimentions, setCanvasDimentions] = useState<Dimentions>(initialDimentions)
     const presetCanvasSizes: ['5x5', '15x15', '25x25', '60x60'] = ['5x5', '15x15', '25x25', '60x60']
 
@@ -46,7 +47,7 @@ const CreateCanvas = () => {
     }
 
     const handleClose = () => {
-        setOpen(false)
+        dispatch(setModalState({ createCanvasModal: false }))
         setError({ columns: false, rows: false })
         setCanvasDimentions(initialDimentions)
     }
@@ -61,18 +62,11 @@ const CreateCanvas = () => {
     return (
         <>
             {contextHolder}
-            <FontAwesomeIcon
-                icon={iconHover.file ? faFile : faFileRegular}
-                className={classnames(styles.icon, styles.selectable)}
-                onMouseOver={() => handleMouseOver('file')}
-                onMouseOut={() => handleMouseOut('file')}
-                onClick={() => setOpen(true)}
-            />
             <Modal
                 mask
                 maskClosable
                 className={styles.modal}
-                open={open}
+                open={createCanvasModal}
                 onCancel={handleClose}
                 footer={null}
             >
