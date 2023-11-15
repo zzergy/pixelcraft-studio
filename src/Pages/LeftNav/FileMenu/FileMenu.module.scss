@@ -25,8 +25,11 @@
             }
         }
 
-        &:last-child {
+        &.warning {
             color: var(--error);
+        }
+
+        &:last-child {
             &:hover {
                 border-bottom-right-radius: 8px;
                 border-bottom-left-radius: 8px;

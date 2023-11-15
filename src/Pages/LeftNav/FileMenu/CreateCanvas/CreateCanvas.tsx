@@ -122,7 +122,18 @@ const CreateCanvas = () => {
                     </div>
                 </div>
                 <div className={styles.createCanvas}>
-                    <Button disabled={error.columns || error.rows || !canvasDimentions.rows || !canvasDimentions.columns} onClick={handleCreateCanvas} size='large' type='primary'>Create Canvas</Button>
+                    <Button
+                        disabled={error.columns ||
+                            error.rows ||
+                            !canvasDimentions.rows ||
+                            !canvasDimentions.columns
+                        }
+                        onClick={handleCreateCanvas}
+                        size='large'
+                        type='primary'
+                    >
+                        Create Canvas
+                    </Button>
                 </div>
             </Modal>
         </>

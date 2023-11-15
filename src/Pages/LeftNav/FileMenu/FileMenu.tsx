@@ -5,10 +5,11 @@ import styles from './FileMenu.module.scss'
 import useIconHover from "../../../hooks/useIconHover";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModalState } from "../../../slices/modalsSlice";
 import CreateCanvas from "./CreateCanvas/CreateCanvas";
 import DeleteCanvas from "./DeleteCanvas/DeleteCanvas";
+import { RootState } from "../../../store";
 
 
 const FileMenu = () => {
@@ -18,16 +19,16 @@ const FileMenu = () => {
     const { iconHover, handleMouseOver, handleMouseOut } = useIconHover();
 
     const [open, setOpen] = useState<boolean>(false);
-
+    const { pixelsGrid } = useSelector((state: RootState) => state.canvasParameters)
     const handleOpenModal = (modal: any) => {
         setOpen(!open)
         dispatch(setModalState({ [modal]: true }))
     }
 
     const data = [
-        { title: 'New', modalName: 'createCanvasModal' },
-        { title: 'Clear', modalName: 'clearCanvasModal' },
-        { title: 'Delete Canvas', modalName: 'deleteCanvasModal' },
+        { title: 'New', modalName: 'createCanvasModal', visible: true },
+        { title: 'Clear', modalName: 'clearCanvasModal', visible: pixelsGrid[0].length !== 0 },
+        { title: 'Delete Canvas', modalName: 'deleteCanvasModal', visible: pixelsGrid[0].length !== 0 },
     ]
 
     return (
@@ -42,13 +43,15 @@ const FileMenu = () => {
                 content={
                     <div className={styles.list}>
                         {data.map((item, key) =>
-                            <div
+
+                            item.visible && <div
                                 key={key}
-                                className={styles.listItem}
+                                className={classnames(styles.listItem, item.title === 'Delete Canvas' && styles.warning)}
                                 onClick={() => handleOpenModal(item.modalName)}
                             >
                                 {item.title}
                             </div>
+
                         )}
                     </div>
                 }>

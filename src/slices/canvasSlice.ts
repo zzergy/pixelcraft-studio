@@ -25,10 +25,16 @@ const canvasReducer = createSlice({
         ...state,
         pixelsGrid: action.payload,
       }
+    ),
+    deleteCanvas: (state: typeof initialCanvasParameters) => (
+      {
+        ...state,
+        pixelsGrid: initialCanvasParameters.pixelsGrid
+      }
     )
   }
 })
 
-export const { setCanvasSize, setPixelsGrid } = canvasReducer.actions
+export const { setCanvasSize, setPixelsGrid, deleteCanvas } = canvasReducer.actions
 
 export default canvasReducer.reducer
