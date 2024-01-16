@@ -54,6 +54,7 @@ const FileMenu = () => {
                 arrow={false}
                 onOpenChange={(open) => setOpen(open)}
                 placement="right"
+                className={styles.fileMenu}
                 content={
                     <div className={styles.list}>
                         {data.map((item, key) =>

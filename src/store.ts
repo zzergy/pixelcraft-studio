@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from 'redux-persist'
 import canvasReducer from "./slices/canvasSlice";
-import modalsReducer from './slices/modalsSlice'
+import modalsReducer from './slices/modalsSlice';
+import canvasActionToolsReducer from './slices/canvasActionToolsSlice';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 const persistConfig = {
@@ -12,7 +13,8 @@ const persistConfig = {
 const store = configureStore({
     reducer: {
         canvasParameters: persistReducer(persistConfig, canvasReducer),
-        modalsOpenState: modalsReducer
+        modalsOpenState: modalsReducer,
+        canvasActionTools: canvasActionToolsReducer
     },
 });
 const persistor = persistStore(store);

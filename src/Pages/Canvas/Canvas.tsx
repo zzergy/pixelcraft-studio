@@ -8,13 +8,19 @@ interface CanvasProps {
 
 const Canvas = ({ drawingColor }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
+    const { isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
+
     const dispatch = useDispatch()
     const { gridColor, pixelsGrid } = canvasParameters
 
-    const drawPixel = (x: number, y: number) => {
+    const drawPixel = (x: number, y: number, color: string) => {
         const updatedPixels = [...pixelsGrid.map(row => [...row])];
-        updatedPixels[x][y] = drawingColor;
+        updatedPixels[x][y] = color;
         dispatch(setPixelsGrid(updatedPixels))
+    }
+
+    const handleClick = (currentXIndex: number, currentYIndex: number) => {
+        drawPixel(currentXIndex, currentYIndex, isEraseMode ? 'white' : drawingColor)
     }
 
     return <div className={styles.container}>
@@ -25,7 +31,7 @@ const Canvas = ({ drawingColor }: CanvasProps) => {
                         key={yIndex}
                         className={styles.canvasColumn}
                         style={{ background: pixelColor, borderColor: gridColor }}
-                        onClick={() => drawPixel(xIndex, yIndex)}>
+                        onClick={() => handleClick(xIndex, yIndex)}>
                     </div>
                 ))}
             </div>

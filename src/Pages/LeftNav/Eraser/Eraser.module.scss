@@ -1,0 +1,26 @@
+.eraseButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    padding: 4px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: var(--medium-gray);
+    }
+
+    &.disabled {
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
+
+    svg {
+        font-size: 20px;
+        color: var(--light);
+    }
+}
