@@ -6,4 +6,10 @@
     width: 40px;
     border-right: 1px solid #373737;
     padding: 12px 0;
+
+    svg {
+        font-size: 18px;
+        color: var(--light);
+        width: 20px;
+    }
 }

@@ -1,11 +1,15 @@
 .fileMenu {
     margin-bottom: 12px;
+    padding: 6px;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: var(--hover-gray);
+        cursor: pointer;
+    }
 }
 
 .icon {
-    font-size: 20px;
-    color: var(--light);
-
     &.selectable {
         cursor: pointer;
     }

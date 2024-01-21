@@ -13,9 +13,10 @@ const Eraser = () => {
     const { isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
 
     return (
-        <button disabled={pixelsGrid[0].length === 0} className={classnames(styles.eraseButton,
-            pixelsGrid[0].length !== 0 && isEraseMode && styles.active,
-            pixelsGrid[0].length === 0 && styles.disabled)}
+        <button disabled={pixelsGrid[0].length === 0}
+            className={classnames(styles.eraseButton,
+                pixelsGrid[0].length !== 0 && isEraseMode && styles.active,
+                pixelsGrid[0].length === 0 && styles.disabled)}
             onClick={() => dispatch(setEraseMode({ isEraseMode: !isEraseMode }))}>
             <FontAwesomeIcon icon={faEraser} />
         </button>

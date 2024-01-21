@@ -6,21 +6,21 @@
     padding: 4px;
 
     &:hover {
+        background-color: var(--hover-gray);
         cursor: pointer;
     }
 
     &.active {
         background-color: var(--medium-gray);
+
+        &:hover {
+            background-color: var(--hover-gray);
+        }
     }
 
     &.disabled {
         &:hover {
             cursor: not-allowed;
         }
-    }
-
-    svg {
-        font-size: 20px;
-        color: var(--light);
     }
 }
