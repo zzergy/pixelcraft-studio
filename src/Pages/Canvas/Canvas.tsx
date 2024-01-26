@@ -30,10 +30,10 @@ const Canvas = ({ drawingColor }: CanvasProps) => {
 
     return <div className={styles.container}>
         {present.map((rows: string[], xIndex: number) => (
-            <div className={styles.canvasRow}>
+            <div key={xIndex} className={styles.canvasRow}>
                 {rows.map((pixelColor: string, yIndex: number) => (
                     <div
-                        // key={yIndex}
+                        key={yIndex}
                         className={styles.canvasColumn}
                         style={{ background: pixelColor, borderColor: gridColor }}
                         onClick={() => handleClick(xIndex, yIndex)}>

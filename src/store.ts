@@ -14,7 +14,7 @@ const store = configureStore({
     reducer: {
         canvasParameters: persistReducer(persistConfig, canvasReducer),
         modalsOpenState: modalsReducer,
-        canvasActionTools: canvasActionToolsReducer
+        canvasActionTools: persistReducer(persistConfig, canvasActionToolsReducer)
     },
 });
 const persistor = persistStore(store);
