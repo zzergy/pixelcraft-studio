@@ -19,7 +19,9 @@ export enum ModalTypes {
 }
 
 export interface CanvasActionTools {
-    isEraseMode?: boolean
+    isEraseMode: boolean,
+    canvasHistory: string[][][],
+    historyIndex: number
 }
 
 //allows you to get a property from another interface into your type

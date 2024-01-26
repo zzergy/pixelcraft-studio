@@ -17,7 +17,7 @@ const Eraser = () => {
             className={classnames(styles.eraseButton,
                 pixelsGrid[0].length !== 0 && isEraseMode && styles.active,
                 pixelsGrid[0].length === 0 && styles.disabled)}
-            onClick={() => dispatch(setEraseMode({ isEraseMode: !isEraseMode }))}>
+            onClick={() => dispatch(setEraseMode(!isEraseMode))}>
             <FontAwesomeIcon icon={faEraser} />
         </button>
     )

@@ -2,15 +2,13 @@ import { faRotateLeft } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styles from './UndoRedo.module.scss'
 import useUndoRedo from "../../../hooks/useUndoRedo"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../store"
 
 const Undo = () => {
-    const { pixelsGrid } = useSelector((state: RootState) => state.canvasParameters)
-
-    const { undo } = useUndoRedo(pixelsGrid)
+    const { undoAction } = useUndoRedo()
     return (
-        <FontAwesomeIcon className={styles.icon} icon={faRotateLeft} onClick={() => undo()} />
+        <FontAwesomeIcon className={styles.icon} icon={faRotateLeft} onClick={() => undoAction()} />
     )
 }
 
