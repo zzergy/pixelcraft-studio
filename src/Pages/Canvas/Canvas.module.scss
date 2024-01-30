@@ -9,10 +9,16 @@
     .canvasRow {
         display: flex;
 
+        &:hover {
+            cursor: pointer;
+        }
         .canvasColumn {
             width: 10px;
             height: 10px;
             border: 0.5px solid;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }
