@@ -10,12 +10,9 @@ import useUndoRedo from "../../hooks/useUndoRedo"
 
 const CanvasPage = () => {
     const { present } = useUndoRedo()
-    const canvasHistory = useSelector((state: RootState) => state.canvasActionTools.canvasHistory)
     const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
     const { pixelsGrid } = canvasParameters
 
-    console.log('present', present)
-    console.log('canvas history', canvasHistory)
     return (
         <div className={styles.container}>
             <Header />
