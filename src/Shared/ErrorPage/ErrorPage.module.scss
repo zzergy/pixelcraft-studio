@@ -5,9 +5,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: var(--hover-purple);
+    color: var(--purple);
 
     .text {
+        padding: 12px;
         letter-spacing: 1px;
         text-align: center;
     }
