@@ -1,8 +1,9 @@
-export interface CanvasParameters {
+export interface CanvasData {
     rows: number,
     columns: number,
     baseColor: string,
     gridColor: string,
+    drawingColor: string,
     pixelsGrid: string[][]
 }
 
@@ -25,4 +26,4 @@ export interface CanvasActionTools {
 }
 
 //allows you to get a property from another interface into your type
-export type Dimentions = Pick<CanvasParameters, "rows" | 'columns'>
+export type Dimentions = Pick<CanvasData, "rows" | 'columns'>

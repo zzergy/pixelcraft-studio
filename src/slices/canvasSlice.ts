@@ -1,46 +1,53 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CanvasParameters, Dimentions } from "../types";
+import { CanvasData, Dimentions } from "../types";
 
-const initialCanvasParameters: CanvasParameters = {
+const initialCanvasData: CanvasData = {
   rows: 15,
   columns: 15,
   baseColor: 'white',
   gridColor: '#ededed',
   pixelsGrid: [[]],
+  drawingColor: '#fafa',
 }
 
-const canvasReducer = createSlice({
+const canvasDataReducer = createSlice({
   name: 'canvas',
-  initialState: initialCanvasParameters,
+  initialState: initialCanvasData,
   reducers: {
-    setCanvasSize: (state: typeof initialCanvasParameters, action: PayloadAction<Dimentions>) => (
+    setCanvasSize: (state: typeof initialCanvasData, action: PayloadAction<Dimentions>) => (
       {
         ...state,
         pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
       }
     ),
-    setPixelsGrid: (state: typeof initialCanvasParameters, action: PayloadAction<string[][]>) => (
+    setPixelsGrid: (state: typeof initialCanvasData, action: PayloadAction<string[][]>) => (
       {
         ...state,
         pixelsGrid: action.payload,
       }
     ),
-    deleteCanvas: (state: typeof initialCanvasParameters) => (
+    deleteCanvas: (state: typeof initialCanvasData) => (
       {
         ...state,
-        pixelsGrid: initialCanvasParameters.pixelsGrid
+        pixelsGrid: initialCanvasData.pixelsGrid
       }
     ),
-    clearCanvas: (state: typeof initialCanvasParameters, action: PayloadAction<Dimentions>) => (
+    clearCanvas: (state: typeof initialCanvasData, action: PayloadAction<Dimentions>) => (
       {
         ...state,
         pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
 
       }
+    ),
+    changeDrawingColor: (state: typeof initialCanvasData, action: PayloadAction<string>) => (
+      {
+        ...state,
+        drawingColor: action.payload
+      }
     )
   }
 })
 
-export const { setCanvasSize, setPixelsGrid, deleteCanvas, clearCanvas } = canvasReducer.actions
+export const { setCanvasSize, setPixelsGrid, deleteCanvas, clearCanvas, changeDrawingColor } = canvasDataReducer.actions
 
-export default canvasReducer.reducer
+export default canvasDataReducer.reducer

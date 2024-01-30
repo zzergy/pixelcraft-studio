@@ -18,10 +18,10 @@ const FileMenu = () => {
     const classnames = require('classnames')
     const dispatch = useDispatch();
     const popoverRef = useRef(null);
-    const { clearUndoRedoHistory } = useUndoRedo()
+    const { clearUndoRedoHistory, addToHistory, present } = useUndoRedo()
 
     const [open, setOpen] = useState<boolean>(false);
-    const { pixelsGrid, rows, columns } = useSelector((state: RootState) => state.canvasParameters)
+    const { rows, columns, baseColor } = useSelector((state: RootState) => state.canvasData)
     const { clearCanvasModal, deleteCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
 
     const handleOpenModal = (modal: any) => {
@@ -29,16 +29,17 @@ const FileMenu = () => {
         dispatch(setModalState({ [modal]: true }))
     }
 
-    const isDrawingOnCanvas = pixelsGrid.some((row) => row.some((pixel) => pixel !== 'white'));
+    const isThereADrawingOnTheCanvas = present?.some((row) => row.some((pixel) => pixel !== 'white'));
 
     const data = [
         { title: 'New', modalName: ModalTypes.create, visible: true },
-        { title: 'Clear', modalName: ModalTypes.clear, visible: pixelsGrid[0].length !== 0 && isDrawingOnCanvas },
-        { title: 'Delete Canvas', modalName: ModalTypes.delete, visible: pixelsGrid[0].length !== 0 },
+        { title: 'Clear', modalName: ModalTypes.clear, visible: present && isThereADrawingOnTheCanvas },
+        { title: 'Delete Canvas', modalName: ModalTypes.delete, visible: present },
     ]
 
     const handleClearCanvas = () => {
         dispatch(clearCanvas({ rows, columns }))
+        addToHistory(Array(rows).fill(Array(columns).fill(baseColor)))
     }
 
     const handleDeleteCanvas = () => {
