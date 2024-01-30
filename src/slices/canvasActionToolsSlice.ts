@@ -3,7 +3,7 @@ import { CanvasActionTools } from "../types";
 
 const initialCanvasActionToolsStates: CanvasActionTools = {
     isEraseMode: false,
-    canvasHistory: [[[]]],
+    canvasHistory: [],
     historyIndex: 0
 }
 
@@ -17,11 +17,24 @@ const canvasActionToolsReducer = createSlice({
                 isEraseMode: action.payload
             }
         ),
+        initialiseCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
+            {
+                ...state,
+                canvasHistory: [action.payload]
+            }
+        ),
         addToCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
             {
                 ...state,
                 canvasHistory: [...state.canvasHistory, action.payload],
                 historyIndex: state.historyIndex + 1
+            }
+        ),
+        clearCanvasHistory: (state: typeof initialCanvasActionToolsStates) => (
+            {
+                ...state,
+                canvasHistory: [],
+                historyIndex: 0
             }
         ),
         undo: (state: typeof initialCanvasActionToolsStates) => (
@@ -39,6 +52,6 @@ const canvasActionToolsReducer = createSlice({
     }
 })
 
-export const { setEraseMode, addToCanvasHistory, undo, redo } = canvasActionToolsReducer.actions
+export const { setEraseMode, addToCanvasHistory, clearCanvasHistory, initialiseCanvasHistory, undo, redo } = canvasActionToolsReducer.actions
 
 export default canvasActionToolsReducer.reducer

@@ -2,18 +2,18 @@ import styles from './Canvas.module.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setPixelsGrid } from "../../slices/canvasSlice";
-import { addToCanvasHistory } from '../../slices/canvasActionToolsSlice';
 import useUndoRedo from '../../hooks/useUndoRedo';
 interface CanvasProps {
-    drawingColor: string
+    drawingColor: string,
+    canvasGrid: string[][]
 }
 
-const Canvas = ({ drawingColor }: CanvasProps) => {
+const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
     const { isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
     const dispatch = useDispatch()
     const { gridColor, pixelsGrid } = canvasParameters
-    const { present, addToHistory } = useUndoRedo()
+    const { addToHistory } = useUndoRedo()
 
 
     const drawPixel = (x: number, y: number, color: string) => {
@@ -21,7 +21,6 @@ const Canvas = ({ drawingColor }: CanvasProps) => {
         updatedPixels[x][y] = color;
         dispatch(setPixelsGrid(updatedPixels))
         addToHistory(updatedPixels)
-
     }
 
     const handleClick = (currentXIndex: number, currentYIndex: number) => {
@@ -29,7 +28,7 @@ const Canvas = ({ drawingColor }: CanvasProps) => {
     }
 
     return <div className={styles.container}>
-        {present.map((rows: string[], xIndex: number) => (
+        {canvasGrid.map((rows: string[], xIndex: number) => (
             <div key={xIndex} className={styles.canvasRow}>
                 {rows.map((pixelColor: string, yIndex: number) => (
                     <div

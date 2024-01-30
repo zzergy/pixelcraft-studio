@@ -11,12 +11,14 @@ import { RootState } from "../../../store";
 import { ModalTypes } from "../../../types";
 import ConfirmModal from "../../../Shared/ConfirmModal/ConfirmModal";
 import { clearCanvas, deleteCanvas } from "../../../slices/canvasSlice";
+import useUndoRedo from "../../../hooks/useUndoRedo";
 
 
 const FileMenu = () => {
     const classnames = require('classnames')
     const dispatch = useDispatch();
     const popoverRef = useRef(null);
+    const { clearUndoRedoHistory } = useUndoRedo()
 
     const [open, setOpen] = useState<boolean>(false);
     const { pixelsGrid, rows, columns } = useSelector((state: RootState) => state.canvasParameters)
@@ -41,6 +43,7 @@ const FileMenu = () => {
 
     const handleDeleteCanvas = () => {
         dispatch(deleteCanvas())
+        clearUndoRedoHistory()
     }
 
     return (

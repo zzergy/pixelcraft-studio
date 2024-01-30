@@ -10,19 +10,25 @@ import useUndoRedo from "../../hooks/useUndoRedo"
 
 const CanvasPage = () => {
     const { present } = useUndoRedo()
+    const canvasHistory = useSelector((state: RootState) => state.canvasActionTools.canvasHistory)
+    const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
+    const { pixelsGrid } = canvasParameters
 
+    console.log('present', present)
+    console.log('canvas history', canvasHistory)
     return (
         <div className={styles.container}>
             <Header />
             <div className={styles.content}>
                 <LeftNav />
                 {/* <ColorPicker drawingColor={drawingColor} setDrawingColor={setDrawingColor} /> */}
-                {present[0].length === 0 ?
+
+                {pixelsGrid.length === 0 ?
                     <div className={styles.emptyCanvas}>
                         <FontAwesomeIcon icon={faHeartCrack} className={styles.heart} />
                         <p className={styles.text}>Oops! No canvas found!</p>
                     </div> :
-                    <Canvas drawingColor={'purple'} />
+                    <Canvas drawingColor={'purple'} canvasGrid={present} />
                 }
             </div>
         </div>)

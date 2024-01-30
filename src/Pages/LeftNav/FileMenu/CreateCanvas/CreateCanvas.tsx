@@ -8,7 +8,7 @@ import { setCanvasSize } from "../../../../slices/canvasSlice";
 import { Button, Modal, message } from 'antd';
 import { RootState } from '../../../../store';
 import { setModalState } from '../../../../slices/modalsSlice';
-import { addToCanvasHistory } from '../../../../slices/canvasActionToolsSlice';
+import { initialiseCanvasHistory } from '../../../../slices/canvasActionToolsSlice';
 
 const CreateCanvas = () => {
     const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
@@ -25,7 +25,7 @@ const CreateCanvas = () => {
 
     const handleCreateCanvas = () => {
         dispatch(setCanvasSize(canvasDimentions))
-        dispatch(addToCanvasHistory(Array(canvasDimentions.rows).fill(Array(canvasDimentions.columns).fill('white'))))
+        dispatch(initialiseCanvasHistory(Array(canvasDimentions.rows).fill(Array(canvasDimentions.columns).fill('white'))))
         handleClose()
         success()
     }
