@@ -1,0 +1,14 @@
+--- TODO'S ---
+- limit the undo action - DONE
+- Set the canvas history start array properly:
+Currently its set to [[[]]] but it should be initiated with the blank canvas when the canvas is created - DONE 
+- Color Picker
+- User
+- add a field when creating a canvas to be able to select the base color of it 
+- zoom in/out
+- min resolution support screen
+- redo the routing error design
+
+
+--- BUGS ---
+- 
