@@ -1,8 +1,9 @@
-export interface CanvasParameters {
+export interface CanvasData {
     rows: number,
     columns: number,
     baseColor: string,
     gridColor: string,
+    drawingColor: string,
     pixelsGrid: string[][]
 }
 

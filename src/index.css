@@ -24,3 +24,16 @@ code {
 .ant-popover .ant-popover-inner {
   padding: 0px !important;
 }
+
+:where(.css-dev-only-do-not-override-gpx7mz).ant-color-picker
+  .ant-color-picker-inner-content
+  .ant-color-picker-panel
+  .ant-color-picker-slider-container {
+  padding: 0 8px;
+}
+
+:where(.css-dev-only-do-not-override-gpx7mz).ant-color-picker
+  .ant-color-picker-inner-content
+  .ant-color-picker-input-container {
+  padding: 0 8px 12px 8px;
+}

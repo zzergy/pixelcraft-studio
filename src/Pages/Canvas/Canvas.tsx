@@ -9,10 +9,10 @@ interface CanvasProps {
 }
 
 const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
-    const canvasParameters = useSelector((state: RootState) => state.canvasParameters)
+    const canvasParameters = useSelector((state: RootState) => state.canvasData)
     const { isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
     const dispatch = useDispatch()
-    const { gridColor, pixelsGrid } = canvasParameters
+    const { gridColor, pixelsGrid, baseColor } = canvasParameters
     const { addToHistory } = useUndoRedo()
 
 
@@ -24,7 +24,7 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     }
 
     const handleClick = (currentXIndex: number, currentYIndex: number) => {
-        drawPixel(currentXIndex, currentYIndex, isEraseMode ? 'white' : drawingColor)
+        drawPixel(currentXIndex, currentYIndex, isEraseMode ? baseColor : drawingColor)
     }
 
     return <div className={styles.container}>
