@@ -1,4 +1,5 @@
 import useUndoRedo from '../../hooks/useUndoRedo'
+import ColorFill from './ColorFill/ColorFill'
 import ColorPicker from './ColorPicker/ColorPicker'
 import Eraser from './Eraser/Eraser'
 import FileMenu from './FileMenu/FileMenu'
@@ -14,10 +15,11 @@ const LeftNav = () => {
             <FileMenu />
 
             {present && <>
+                <ColorPicker />
                 <Eraser />
                 <Undo />
                 <Redo />
-                <ColorPicker />
+                <ColorFill />
             </>}
         </div>
     )

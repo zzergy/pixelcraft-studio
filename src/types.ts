@@ -21,6 +21,7 @@ export enum ModalTypes {
 
 export interface CanvasActionTools {
     isEraseMode: boolean,
+    isColorFillMode: boolean,
     canvasHistory: string[][][],
     historyIndex: number
 }

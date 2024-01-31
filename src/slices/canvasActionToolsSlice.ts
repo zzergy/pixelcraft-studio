@@ -3,6 +3,7 @@ import { CanvasActionTools } from "../types";
 
 const initialCanvasActionToolsStates: CanvasActionTools = {
     isEraseMode: false,
+    isColorFillMode: false,
     canvasHistory: [],
     historyIndex: 0
 }
@@ -11,13 +12,21 @@ const canvasActionToolsReducer = createSlice({
     name: 'canvasActionTools',
     initialState: initialCanvasActionToolsStates,
     reducers: {
-        setEraseMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
+        triggerEraseMode: (state: typeof initialCanvasActionToolsStates) => (
             {
                 ...state,
-                isEraseMode: action.payload
+                isEraseMode: !state.isEraseMode,
+                isColorFillMode: false
             }
         ),
-        initialiseCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
+        triggerColorFillMode: (state: typeof initialCanvasActionToolsStates) => (
+            {
+                ...state,
+                isColorFillMode: !state.isColorFillMode,
+                isEraseMode: false
+            }
+        ),
+        initializeCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
             {
                 ...state,
                 canvasHistory: [action.payload]
@@ -52,6 +61,6 @@ const canvasActionToolsReducer = createSlice({
     }
 })
 
-export const { setEraseMode, addToCanvasHistory, clearCanvasHistory, initialiseCanvasHistory, undo, redo } = canvasActionToolsReducer.actions
+export const { triggerEraseMode, addToCanvasHistory, clearCanvasHistory, initializeCanvasHistory: initializeCanvasHistory, undo, redo, triggerColorFillMode } = canvasActionToolsReducer.actions
 
 export default canvasActionToolsReducer.reducer

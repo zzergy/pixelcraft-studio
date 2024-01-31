@@ -26,6 +26,7 @@ const useUndoRedo = () => {
 
     return {
         present,
+        canvasHistory,
         undoAction,
         redoAction,
         addToHistory,

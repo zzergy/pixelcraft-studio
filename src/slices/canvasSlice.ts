@@ -17,6 +17,8 @@ const canvasDataReducer = createSlice({
     setCanvasSize: (state: typeof initialCanvasData, action: PayloadAction<Dimentions>) => (
       {
         ...state,
+        rows: action.payload.rows,
+        columns: action.payload.columns,
         pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill(state.baseColor))
       }
     ),
