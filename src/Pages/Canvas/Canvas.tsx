@@ -12,12 +12,12 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasData)
     const { isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
     const dispatch = useDispatch()
-    const { gridColor, pixelsGrid, baseColor } = canvasParameters
-    const { addToHistory } = useUndoRedo()
+    const { gridColor, baseColor } = canvasParameters
+    const { addToHistory, present } = useUndoRedo()
 
 
     const drawPixel = (x: number, y: number, color: string) => {
-        const updatedPixels = [...pixelsGrid.map(row => [...row])];
+        const updatedPixels = [...present?.map(row => [...row])];
         updatedPixels[x][y] = color;
         dispatch(setPixelsGrid(updatedPixels))
         addToHistory(updatedPixels)

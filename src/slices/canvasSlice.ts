@@ -2,8 +2,8 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CanvasData, Dimentions } from "../types";
 
 const initialCanvasData: CanvasData = {
-  rows: 15,
-  columns: 15,
+  rows: 0,
+  columns: 0,
   baseColor: 'white',
   gridColor: '#ededed',
   pixelsGrid: [[]],
@@ -17,7 +17,7 @@ const canvasDataReducer = createSlice({
     setCanvasSize: (state: typeof initialCanvasData, action: PayloadAction<Dimentions>) => (
       {
         ...state,
-        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
+        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill(state.baseColor))
       }
     ),
     setPixelsGrid: (state: typeof initialCanvasData, action: PayloadAction<string[][]>) => (
@@ -29,13 +29,15 @@ const canvasDataReducer = createSlice({
     deleteCanvas: (state: typeof initialCanvasData) => (
       {
         ...state,
+        rows: 0,
+        columns: 0,
         pixelsGrid: initialCanvasData.pixelsGrid
       }
     ),
     clearCanvas: (state: typeof initialCanvasData, action: PayloadAction<Dimentions>) => (
       {
         ...state,
-        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill('white'))
+        pixelsGrid: Array(action.payload.rows).fill(Array(action.payload.columns).fill(state.baseColor))
 
       }
     ),

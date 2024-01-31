@@ -29,7 +29,7 @@ const FileMenu = () => {
         dispatch(setModalState({ [modal]: true }))
     }
 
-    const isThereADrawingOnTheCanvas = present?.some((row) => row.some((pixel) => pixel !== 'white'));
+    const isThereADrawingOnTheCanvas = present?.some((row) => row.some((pixel) => pixel !== baseColor));
 
     const data = [
         { title: 'New', modalName: ModalTypes.create, visible: true },

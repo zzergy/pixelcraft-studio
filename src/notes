@@ -7,8 +7,8 @@ Currently its set to [[[]]] but it should be initiated with the blank canvas whe
 - add a field when creating a canvas to be able to select the base color of it 
 - zoom in/out
 - min resolution support screen
-- redo the routing error design
-
+- redo the routing error design - DONE
+- bucket tool
 
 --- BUGS ---
 - 
