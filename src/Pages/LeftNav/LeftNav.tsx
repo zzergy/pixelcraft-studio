@@ -25,11 +25,7 @@ const LeftNav = () => {
     }
 
     const handleUndoRedoClick = (action: 'undo' | 'redo') => {
-        if (action === 'undo') {
-            undoAction()
-        } else {
-            redoAction()
-        }
+        action === 'undo' ? undoAction() : redoAction()
     }
 
     const handleColorfillClick = () => {
