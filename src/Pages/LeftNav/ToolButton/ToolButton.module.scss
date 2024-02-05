@@ -5,6 +5,17 @@
     margin-bottom: 12px;
     padding: 4px;
 
+    &.disabled {
+        svg {
+            color: var(--light-gray);
+        }
+
+        &:hover {
+            background-color: transparent;
+            cursor: default;
+        }
+    }
+
     &:hover {
         background-color: var(--hover-gray);
         cursor: pointer;

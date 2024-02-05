@@ -52,12 +52,12 @@ const LeftNav = () => {
                 <ToolButton
                     icon={faRotateLeft}
                     onClick={() => { handleUndoRedoClick('undo') }}
-                    isDisabled={canvasHistory.length === 1}
+                    isDisabled={canvasHistory.length === 1 || hasCanvas === canvasHistory[0]}
                 />
                 <ToolButton
                     icon={faRotateRight}
                     onClick={() => { handleUndoRedoClick('redo') }}
-                // isDisabled={canvasHistory.length === 1}
+                    isDisabled={hasCanvas === canvasHistory[canvasHistory.length - 1]}
                 />
                 <ToolButton
                     icon={faFillDrip}

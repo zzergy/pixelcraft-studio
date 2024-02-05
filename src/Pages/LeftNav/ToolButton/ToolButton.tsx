@@ -14,11 +14,11 @@ const ToolButton = ({ icon, onClick, isActive, isDisabled }: ToolButtonProps) =>
     return (
         <button
             disabled={isDisabled}
-            className={classnames(styles.button, isActive && styles.active)}
+            className={classnames(styles.button, isActive && styles.active, isDisabled && styles.disabled)}
             onClick={() => onClick()}
         >
             <FontAwesomeIcon icon={icon} />
-        </button>
+        </button >
     )
 }
 
