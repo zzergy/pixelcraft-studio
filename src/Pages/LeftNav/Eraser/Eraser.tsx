@@ -15,7 +15,7 @@ const Eraser = () => {
     return (
         <button
             disabled={canvasHistory.length === 1}
-            onClick={() => dispatch(triggerEraseMode())}
+            onClick={() => dispatch(triggerEraseMode(!isEraseMode))}
             className={classnames(styles.eraseButton, isEraseMode && styles.active)}
         >
             <FontAwesomeIcon icon={faEraser} />

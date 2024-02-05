@@ -12,17 +12,17 @@ const canvasActionToolsReducer = createSlice({
     name: 'canvasActionTools',
     initialState: initialCanvasActionToolsStates,
     reducers: {
-        triggerEraseMode: (state: typeof initialCanvasActionToolsStates) => (
+        triggerEraseMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
             {
                 ...state,
-                isEraseMode: !state.isEraseMode,
+                isEraseMode: action.payload,
                 isColorFillMode: false
             }
         ),
-        triggerColorFillMode: (state: typeof initialCanvasActionToolsStates) => (
+        triggerColorFillMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
             {
                 ...state,
-                isColorFillMode: !state.isColorFillMode,
+                isColorFillMode: action.payload,
                 isEraseMode: false
             }
         ),

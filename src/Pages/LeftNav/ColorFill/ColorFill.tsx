@@ -12,7 +12,7 @@ const ColorFill = () => {
 
     return (
         <button
-            onClick={() => dispatch(triggerColorFillMode())}
+            onClick={() => dispatch(triggerColorFillMode(!isColorFillMode))}
             className={classnames(styles.colorFillButton, isColorFillMode && styles.active)}
         >
             <FontAwesomeIcon icon={faFillDrip} />

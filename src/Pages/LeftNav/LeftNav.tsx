@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import useUndoRedo from '../../hooks/useUndoRedo'
 import ColorFill from './ColorFill/ColorFill'
 import ColorPicker from './ColorPicker/ColorPicker'
@@ -6,6 +7,7 @@ import FileMenu from './FileMenu/FileMenu'
 import styles from './LeftNav.module.scss'
 import Redo from './UndoRedo/Redo'
 import Undo from './UndoRedo/Undo'
+import Pencil from './Pencil/Pencil'
 
 const LeftNav = () => {
     const { present } = useUndoRedo()
@@ -15,6 +17,7 @@ const LeftNav = () => {
             <FileMenu />
 
             {present && <>
+                <Pencil />
                 <ColorPicker />
                 <Eraser />
                 <Undo />
