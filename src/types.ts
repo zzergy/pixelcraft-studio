@@ -27,4 +27,4 @@ export interface CanvasActionTools {
 }
 
 //allows you to get a property from another interface into your type
-export type Dimentions = Pick<CanvasData, "rows" | 'columns'>
+export type Dimensions = Pick<CanvasData, "rows" | 'columns'>
