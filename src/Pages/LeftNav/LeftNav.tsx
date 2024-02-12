@@ -63,7 +63,7 @@ const LeftNav = () => {
                     icon={faFillDrip}
                     onClick={handleColorfillClick}
                     isActive={isColorFillMode}
-                    isDisabled={canvasHistory.length === 1}
+                    isDisabled={!hasCanvas}
                 />
             </>
             }
