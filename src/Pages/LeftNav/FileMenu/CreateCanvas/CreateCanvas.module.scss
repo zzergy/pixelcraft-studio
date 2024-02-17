@@ -51,29 +51,34 @@
         }
     }
 
-    .presetCanvasesContainer {
+    .group {
         display: flex;
-        gap: 6px;
+        justify-content: space-between;
 
-        .canvasSizes {
-            font-size: 12px;
-            background: var(--medium-gray);
-            width: 60px;
-            height: 40px;
+        .presetCanvasesContainer {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            color: var(--light);
-            cursor: pointer;
+            gap: 6px;
 
-            &:hover {
-                background-color: var(--hover-gray);
-            }
+            .canvasSizes {
+                font-size: 12px;
+                background: var(--medium-gray);
+                width: 60px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 8px;
+                color: var(--light);
+                cursor: pointer;
 
-            &.selected {
-                background-color: var(--light-gray);
-                // font-weight: bold;
+                &:hover {
+                    background-color: var(--hover-gray);
+                }
+
+                &.selected {
+                    background-color: var(--light-gray);
+                    // font-weight: bold;
+                }
             }
         }
     }

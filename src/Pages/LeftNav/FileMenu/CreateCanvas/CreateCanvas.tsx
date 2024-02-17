@@ -2,7 +2,7 @@ import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './CreateCanvas.module.scss'
 import { useState } from "react";
-import { Dimentions } from "../../../../types";
+import { Dimensions } from "../../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { setCanvasSize } from "../../../../slices/canvasSlice";
 import { Button, Modal, message } from 'antd';
@@ -12,7 +12,7 @@ import { clearCanvasHistory, initializeCanvasHistory } from '../../../../slices/
 
 const CreateCanvas = () => {
     const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
-    const initialDimentions = { rows: 0, columns: 0 }
+    const initialDimensions = { rows: 0, columns: 0 }
     const [messageApi, contextHolder] = message.useMessage();
 
     const dispatch = useDispatch();
@@ -20,8 +20,9 @@ const CreateCanvas = () => {
 
     const { createCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
     const [error, setError] = useState({ rows: false, columns: false });
-    const [canvasDimentions, setCanvasDimentions] = useState<Dimentions>(initialDimentions)
+    const [canvasDimentions, setCanvasDimentions] = useState<Dimensions>(initialDimensions)
     const presetCanvasSizes: ['5x5', '15x15', '25x25', '60x60'] = ['5x5', '15x15', '25x25', '60x60']
+    const errorMessage = 'Canvas height must be between 5 and 60'
 
     const handleCreateCanvas = () => {
         dispatch(clearCanvasHistory())
@@ -50,7 +51,7 @@ const CreateCanvas = () => {
     const handleClose = () => {
         dispatch(setModalState({ createCanvasModal: false }))
         setError({ columns: false, rows: false })
-        setCanvasDimentions(initialDimentions)
+        setCanvasDimentions(initialDimensions)
     }
 
     const success = () => {
@@ -89,7 +90,7 @@ const CreateCanvas = () => {
                             value={!canvasDimentions.columns ? '' : canvasDimentions.columns}
                             onChange={(event) => handleChangeInput(event)}
                         />
-                        {error.columns && <div className={styles.errorMessage}>Canvas width must be between 5 and 60</div>}
+                        {error.columns && <div className={styles.errorMessage}>{errorMessage}</div>}
                     </div>
                     <div className={styles.section}>
                         <label className={styles.label} htmlFor="height">Height</label>
@@ -100,26 +101,32 @@ const CreateCanvas = () => {
                             value={!canvasDimentions.rows ? "" : canvasDimentions.rows}
                             onChange={(event) => handleChangeInput(event)}
                         />
-                        {error.rows && <div className={styles.errorMessage}>Canvas height must be between 5 and 60</div>}
+                        {error.rows && <div className={styles.errorMessage}>{errorMessage}</div>}
                     </div>
 
                     <div className={styles.label}>Preset Canvas Sizes</div>
-                    <div className={styles.presetCanvasesContainer}>
-                        {presetCanvasSizes.map((size, key) => {
-                            const rows = parseInt(size.split('x')[0])
-                            const columns = parseInt(size.split('x')[1])
-                            const isSelected = canvasDimentions.rows === rows && canvasDimentions.columns === columns
+                    <div>
+                        <div className={styles.presetCanvasesContainer}>
+                            {presetCanvasSizes.map((size, key) => {
+                                const rows = parseInt(size.split('x')[0])
+                                const columns = parseInt(size.split('x')[1])
+                                const isSelected = canvasDimentions.rows === rows && canvasDimentions.columns === columns
 
-                            return (
-                                <div
-                                    key={key}
-                                    className={classnames(styles.canvasSizes, isSelected && styles.selected)}
-                                    onClick={() => { handleClickCanvasOption(rows, columns) }}
-                                >
-                                    {size}
-                                </div>
-                            )
-                        })}
+                                return (
+                                    <div
+                                        key={key}
+                                        className={classnames(styles.canvasSizes, isSelected && styles.selected)}
+                                        onClick={() => { handleClickCanvasOption(rows, columns) }}
+                                    >
+                                        {size}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className={styles.section}>
+                            <label className={styles.label} htmlFor="height">Height</label>
+
+                        </div>
                     </div>
                 </div>
                 <div className={styles.createCanvas}>
