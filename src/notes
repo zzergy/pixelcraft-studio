@@ -9,6 +9,7 @@ Currently its set to [[[]]] but it should be initiated with the blank canvas whe
 - min resolution support screen
 - redo the routing error design - DONE
 - bucket tool - DONE
-- disable undo redo when you cant undo/redo anymore
+- disable undo redo when you cant undo/redo anymore - DONE
+
 --- BUGS ---
 - 
