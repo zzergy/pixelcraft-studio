@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pixel-craft/static/css/main.9e5bf222.css",
+    "main.js": "/pixel-craft/static/js/main.bc811323.js",
+    "static/media/purple-background.jpeg": "/pixel-craft/static/media/purple-background.89b523f2cd2b7d39a4f0.jpeg",
+    "static/media/Minecraft.ttf": "/pixel-craft/static/media/Minecraft.81f6c7f882fcc2dee106.ttf",
+    "index.html": "/pixel-craft/index.html",
+    "main.9e5bf222.css.map": "/pixel-craft/static/css/main.9e5bf222.css.map",
+    "main.bc811323.js.map": "/pixel-craft/static/js/main.bc811323.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9e5bf222.css",
+    "static/js/main.bc811323.js"
+  ]
+}
