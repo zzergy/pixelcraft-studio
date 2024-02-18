@@ -4,25 +4,26 @@ import styles from './CreateCanvas.module.scss'
 import { useState } from "react";
 import { Dimensions } from "../../../../types";
 import { useDispatch, useSelector } from "react-redux";
-import { setCanvasSize } from "../../../../slices/canvasSlice";
-import { Button, Modal, message } from 'antd';
+import { setCanvasGridColor, setCanvasSize } from "../../../../slices/canvasSlice";
+import { Button, ColorPicker, Modal, message } from 'antd';
 import { RootState } from '../../../../store';
 import { setModalState } from '../../../../slices/modalsSlice';
 import { clearCanvasHistory, initializeCanvasHistory } from '../../../../slices/canvasActionToolsSlice';
+import { Color } from 'antd/es/color-picker';
 
 const CreateCanvas = () => {
-    const validationPattern = /^(?:[5-9]|[1-5]\d|60)$/;
+    const validationPattern = /^(?:[5-9]|[1-5]\d+|60)$/;
     const initialDimensions = { rows: 0, columns: 0 }
     const [messageApi, contextHolder] = message.useMessage();
 
     const dispatch = useDispatch();
     const classnames = require('classnames')
-
+    const canvasGridColor = useSelector((state: RootState) => state.canvasData.gridColor)
     const { createCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
     const [error, setError] = useState({ rows: false, columns: false });
     const [canvasDimensions, setCanvasDimensions] = useState<Dimensions>(initialDimensions)
     const presetCanvasSizes: ['5x5', '15x15', '25x25', '60x60'] = ['5x5', '15x15', '25x25', '60x60']
-    const errorMessage = 'Canvas height must be between 5 and 60'
+    const errorMessage = 'Please enter a number between 5 and 60'
 
     const handleCreateCanvas = () => {
         dispatch(clearCanvasHistory())
@@ -34,7 +35,7 @@ const CreateCanvas = () => {
 
     const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setCanvasDimensions({ ...canvasDimensions, [name]: parseInt(value) })
+        setCanvasDimensions({ ...canvasDimensions, [name]: value })
 
         if (!validationPattern.test(value)) {
             setError({ ...error, [name]: true })
@@ -61,6 +62,10 @@ const CreateCanvas = () => {
         });
     };
 
+    const handleColorChange = (_value: Color, hex: string) => {
+        dispatch(setCanvasGridColor(hex))
+    }
+
     return (
         <>
             {contextHolder}
@@ -77,7 +82,7 @@ const CreateCanvas = () => {
                         icon={faFileRegular}
                         className={styles.icon}
                     />
-                    <span className={styles.titleText}>New Drawing Canvas</span>
+                    <span className={styles.titleText}>New Canvas</span>
                 </div>
 
                 <div className={styles.content}>
@@ -104,28 +109,35 @@ const CreateCanvas = () => {
                         {error.rows && <div className={styles.errorMessage}>{errorMessage}</div>}
                     </div>
 
-                    <div className={styles.label}>Preset Canvas Sizes</div>
-                    <div>
-                        <div className={styles.presetCanvasesContainer}>
-                            {presetCanvasSizes.map((size, key) => {
-                                const rows = parseInt(size.split('x')[0])
-                                const columns = parseInt(size.split('x')[1])
-                                const isSelected = canvasDimensions.rows === rows && canvasDimensions.columns === columns
+                    <div className={styles.group}>
+                        <div className={styles.section}>
+                            <div className={styles.label}>Preset Canvas Sizes</div>
+                            <div className={styles.presetCanvasesContainer}>
+                                {presetCanvasSizes.map((size, key) => {
+                                    const rows = parseInt(size.split('x')[0])
+                                    const columns = parseInt(size.split('x')[1])
+                                    const isSelected = canvasDimensions.rows === rows && canvasDimensions.columns === columns
 
-                                return (
-                                    <div
-                                        key={key}
-                                        className={classnames(styles.canvasSizes, isSelected && styles.selected)}
-                                        onClick={() => { handleClickCanvasOption(rows, columns) }}
-                                    >
-                                        {size}
-                                    </div>
-                                )
-                            })}
+                                    return (
+                                        <div
+                                            key={key}
+                                            className={classnames(styles.canvasSizes, isSelected && styles.selected)}
+                                            onClick={() => { handleClickCanvasOption(rows, columns) }}
+                                        >
+                                            {size}
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                         <div className={styles.section}>
-                            <label className={styles.label} htmlFor="height">Height</label>
-
+                            <label className={styles.label} htmlFor="grid color">Grid Color</label>
+                            <ColorPicker
+                                showText
+                                defaultValue={canvasGridColor}
+                                value={canvasGridColor}
+                                onChange={(value, hex) => handleColorChange(value, hex)}
+                            />
                         </div>
                     </div>
                 </div>

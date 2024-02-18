@@ -48,10 +48,23 @@ const canvasDataReducer = createSlice({
         ...state,
         drawingColor: action.payload
       }
+    ),
+    setCanvasGridColor: (state: typeof initialCanvasData, action: PayloadAction<string>) => (
+      {
+        ...state,
+        gridColor: action.payload
+      }
     )
   }
 })
 
-export const { setCanvasSize, setPixelsGrid, deleteCanvas, clearCanvas, changeDrawingColor } = canvasDataReducer.actions
+export const {
+  setCanvasSize,
+  setPixelsGrid,
+  deleteCanvas,
+  clearCanvas,
+  changeDrawingColor,
+  setCanvasGridColor
+} = canvasDataReducer.actions
 
 export default canvasDataReducer.reducer

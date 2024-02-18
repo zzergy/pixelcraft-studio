@@ -21,6 +21,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/**************** Ant Design component tweaks ****************/
+
 .ant-popover .ant-popover-inner {
   padding: 0px !important;
 }
@@ -37,3 +39,5 @@ code {
   .ant-color-picker-input-container {
   padding: 0 8px 12px 8px;
 }
+
+/**************************************************************/

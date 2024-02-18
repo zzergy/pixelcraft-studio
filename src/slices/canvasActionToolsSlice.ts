@@ -68,6 +68,15 @@ const canvasActionToolsReducer = createSlice({
     }
 })
 
-export const { triggerEraseMode, addToCanvasHistory, clearCanvasHistory, initializeCanvasHistory, undo, redo, triggerColorFillMode, updateHistoryIndex } = canvasActionToolsReducer.actions
+export const {
+    triggerEraseMode,
+    addToCanvasHistory,
+    clearCanvasHistory,
+    initializeCanvasHistory,
+    undo,
+    redo,
+    triggerColorFillMode,
+    updateHistoryIndex
+} = canvasActionToolsReducer.actions
 
 export default canvasActionToolsReducer.reducer
