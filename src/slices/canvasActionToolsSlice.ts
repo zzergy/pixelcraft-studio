@@ -29,7 +29,8 @@ const canvasActionToolsReducer = createSlice({
         initializeCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
             {
                 ...state,
-                canvasHistory: [action.payload]
+                canvasHistory: [action.payload],
+                historyIndex: 0
             }
         ),
         addToCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
@@ -57,10 +58,16 @@ const canvasActionToolsReducer = createSlice({
                 ...state,
                 historyIndex: Math.min(state.canvasHistory.length - 1, state.historyIndex + 1)
             }
+        ),
+        updateHistoryIndex: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<number>) => (
+            {
+                ...state,
+                historyIndex: action.payload
+            }
         )
     }
 })
 
-export const { triggerEraseMode, addToCanvasHistory, clearCanvasHistory, initializeCanvasHistory: initializeCanvasHistory, undo, redo, triggerColorFillMode } = canvasActionToolsReducer.actions
+export const { triggerEraseMode, addToCanvasHistory, clearCanvasHistory, initializeCanvasHistory, undo, redo, triggerColorFillMode, updateHistoryIndex } = canvasActionToolsReducer.actions
 
 export default canvasActionToolsReducer.reducer

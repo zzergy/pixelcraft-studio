@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setPixelsGrid } from "../../slices/canvasSlice";
 import useUndoRedo from '../../hooks/useUndoRedo';
+import { updateHistoryIndex } from '../../slices/canvasActionToolsSlice';
+
 interface CanvasProps {
     drawingColor: string,
     canvasGrid: string[][]
@@ -12,12 +14,11 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasData)
     const { isEraseMode, isColorFillMode } = useSelector((state: RootState) => state.canvasActionTools)
     const dispatch = useDispatch()
+    const { addToHistory, present, canvasHistory } = useUndoRedo()
     const { gridColor, baseColor } = canvasParameters
-    const { addToHistory, present } = useUndoRedo()
-
 
     const drawPixel = (x: number, y: number, color: string) => {
-        let updatedPixels: string[][] = [[]]
+        let updatedPixels: string[][] = [[]];
 
         if (isColorFillMode) {
             updatedPixels = present.map((row: string[]) => row.map((pixel: string) => pixel = color))
@@ -27,6 +28,7 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
         }
 
         dispatch(setPixelsGrid(updatedPixels))
+        present !== canvasHistory[canvasHistory.length - 1] && dispatch(updateHistoryIndex(canvasHistory.length - 1))
         addToHistory(updatedPixels)
     }
 

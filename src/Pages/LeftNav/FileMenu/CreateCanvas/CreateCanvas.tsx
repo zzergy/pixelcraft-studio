@@ -20,21 +20,21 @@ const CreateCanvas = () => {
 
     const { createCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
     const [error, setError] = useState({ rows: false, columns: false });
-    const [canvasDimentions, setCanvasDimentions] = useState<Dimensions>(initialDimensions)
+    const [canvasDimensions, setCanvasDimensions] = useState<Dimensions>(initialDimensions)
     const presetCanvasSizes: ['5x5', '15x15', '25x25', '60x60'] = ['5x5', '15x15', '25x25', '60x60']
     const errorMessage = 'Canvas height must be between 5 and 60'
 
     const handleCreateCanvas = () => {
         dispatch(clearCanvasHistory())
-        dispatch(setCanvasSize(canvasDimentions))
-        dispatch(initializeCanvasHistory(Array(canvasDimentions.rows).fill(Array(canvasDimentions.columns).fill('white'))))
+        dispatch(setCanvasSize(canvasDimensions))
+        dispatch(initializeCanvasHistory(Array(canvasDimensions.rows).fill(Array(canvasDimensions.columns).fill('white'))))
         handleClose()
         success()
     }
 
     const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setCanvasDimentions({ ...canvasDimentions, [name]: parseInt(value) })
+        setCanvasDimensions({ ...canvasDimensions, [name]: parseInt(value) })
 
         if (!validationPattern.test(value)) {
             setError({ ...error, [name]: true })
@@ -45,13 +45,13 @@ const CreateCanvas = () => {
     }
 
     const handleClickCanvasOption = (rows: number, columns: number) => {
-        setCanvasDimentions({ ...canvasDimentions, rows, columns })
+        setCanvasDimensions({ ...canvasDimensions, rows, columns })
     }
 
     const handleClose = () => {
         dispatch(setModalState({ createCanvasModal: false }))
         setError({ columns: false, rows: false })
-        setCanvasDimentions(initialDimensions)
+        setCanvasDimensions(initialDimensions)
     }
 
     const success = () => {
@@ -87,7 +87,7 @@ const CreateCanvas = () => {
                             id='width'
                             name='columns'
                             className={classnames(styles.input, error.columns && styles.error)}
-                            value={!canvasDimentions.columns ? '' : canvasDimentions.columns}
+                            value={!canvasDimensions.columns ? '' : canvasDimensions.columns}
                             onChange={(event) => handleChangeInput(event)}
                         />
                         {error.columns && <div className={styles.errorMessage}>{errorMessage}</div>}
@@ -98,7 +98,7 @@ const CreateCanvas = () => {
                             id='height'
                             name='rows'
                             className={classnames(styles.input, error.rows && styles.error)}
-                            value={!canvasDimentions.rows ? "" : canvasDimentions.rows}
+                            value={!canvasDimensions.rows ? "" : canvasDimensions.rows}
                             onChange={(event) => handleChangeInput(event)}
                         />
                         {error.rows && <div className={styles.errorMessage}>{errorMessage}</div>}
@@ -110,7 +110,7 @@ const CreateCanvas = () => {
                             {presetCanvasSizes.map((size, key) => {
                                 const rows = parseInt(size.split('x')[0])
                                 const columns = parseInt(size.split('x')[1])
-                                const isSelected = canvasDimentions.rows === rows && canvasDimentions.columns === columns
+                                const isSelected = canvasDimensions.rows === rows && canvasDimensions.columns === columns
 
                                 return (
                                     <div
@@ -133,8 +133,8 @@ const CreateCanvas = () => {
                     <Button
                         disabled={error.columns ||
                             error.rows ||
-                            !canvasDimentions.rows ||
-                            !canvasDimentions.columns
+                            !canvasDimensions.rows ||
+                            !canvasDimensions.columns
                         }
                         onClick={handleCreateCanvas}
                         size='large'
