@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pixel-perfect/static/css/main.99c36b52.css",
-    "main.js": "/pixel-perfect/static/js/main.06ad1d36.js",
+    "main.css": "/pixel-perfect/static/css/main.e80d9cdb.css",
+    "main.js": "/pixel-perfect/static/js/main.cf652ca9.js",
     "static/media/purple-background.jpeg": "/pixel-perfect/static/media/purple-background.89b523f2cd2b7d39a4f0.jpeg",
     "static/media/Minecraft.ttf": "/pixel-perfect/static/media/Minecraft.81f6c7f882fcc2dee106.ttf",
     "index.html": "/pixel-perfect/index.html",
-    "main.99c36b52.css.map": "/pixel-perfect/static/css/main.99c36b52.css.map",
-    "main.06ad1d36.js.map": "/pixel-perfect/static/js/main.06ad1d36.js.map"
+    "main.e80d9cdb.css.map": "/pixel-perfect/static/css/main.e80d9cdb.css.map",
+    "main.cf652ca9.js.map": "/pixel-perfect/static/js/main.cf652ca9.js.map"
   },
   "entrypoints": [
-    "static/css/main.99c36b52.css",
-    "static/js/main.06ad1d36.js"
+    "static/css/main.e80d9cdb.css",
+    "static/js/main.cf652ca9.js"
   ]
 }
