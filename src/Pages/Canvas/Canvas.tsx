@@ -20,7 +20,7 @@ interface RelPosition {
 
 const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const canvasParameters = useSelector((state: RootState) => state.canvasData)
-    const { isColorFillMode, isCanvasDragMode, isDrawingMode } = useSelector((state: RootState) => state.canvasActionTools)
+    const { isColorFillMode, isCanvasDragMode, isDrawingMode, isEraseMode } = useSelector((state: RootState) => state.canvasActionTools)
     const { canvasPosition } = useSelector((state: RootState) => state.canvasData)
     const dispatch = useDispatch()
     const { addToHistory, present, canvasHistory } = useUndoRedo()
@@ -83,7 +83,7 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
 
     const handlePixelClick = (xIndex: number, yIndex: number) => {
         if (!isCanvasDragMode) {
-            const color = isDrawingMode ? drawingColor : baseColor
+            const color = isDrawingMode || isColorFillMode ? drawingColor : baseColor
             drawPixel(xIndex, yIndex, color)
         }
     }
