@@ -42,15 +42,15 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
                 const rect = canvasRef.current?.getBoundingClientRect();
                 if (rect) {
                     let newX = event.pageX - relPosition.x;
-                    let newY = event.pageY - relPosition.y;
+                    let newY = event.pageY - relPosition.y - TOP_NAV_HEIGHT;
 
                     // Calculate the maximum allowed positions
                     const maxX = window.innerWidth - rect.width;
-                    const maxY = window.innerHeight - rect.height;
+                    const maxY = window.innerHeight - rect.height - TOP_NAV_HEIGHT;
 
                     // Ensure the canvas stays within the boundaries
                     newX = Math.min(Math.max(newX, LEFT_NAV_WIDTH), maxX);
-                    newY = Math.min(Math.max(newY, TOP_NAV_HEIGHT), maxY);
+                    newY = Math.min(Math.max(newY, 0), maxY);
 
                     dispatch(setCanvasPosition({ x: newX, y: newY }))
                 }
@@ -110,8 +110,9 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
             className={styles.container}
             style={{
                 position: 'absolute',
-                left: canvasPosition.x,
-                top: canvasPosition.y
+                transform: `translate(${canvasPosition.x}px, ${canvasPosition.y}px)`
+                // left: canvasPosition.x,
+                // top: canvasPosition.y
             }}
             onMouseDown={(event) => { isCanvasDragMode && handleMouseDown(event) }}
         >
