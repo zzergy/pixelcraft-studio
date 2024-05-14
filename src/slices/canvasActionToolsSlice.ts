@@ -1,9 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { CanvasActionTools } from "../types";
 
-const initialCanvasActionToolsStates: CanvasActionTools = {
+
+const initialCanvasModes = {
+    isDrawingMode: false,
     isEraseMode: false,
     isColorFillMode: false,
+    isCanvasDragMode: false,
+}
+
+const initialCanvasActionToolsStates: CanvasActionTools = {
+    ...initialCanvasModes,
     canvasHistory: [],
     historyIndex: 0
 }
@@ -15,15 +22,29 @@ const canvasActionToolsReducer = createSlice({
         triggerEraseMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
             {
                 ...state,
-                isEraseMode: action.payload,
-                isColorFillMode: false
+                ...initialCanvasModes,
+                isEraseMode: action.payload
             }
         ),
         triggerColorFillMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
             {
                 ...state,
-                isColorFillMode: action.payload,
-                isEraseMode: false
+                ...initialCanvasModes,
+                isColorFillMode: action.payload
+            }
+        ),
+        triggerCanvasDragMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
+            {
+                ...state,
+                ...initialCanvasModes,
+                isCanvasDragMode: action.payload,
+            }
+        ),
+        triggerDrawingMode: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<boolean>) => (
+            {
+                ...state,
+                ...initialCanvasModes,
+                isDrawingMode: action.payload,
             }
         ),
         initializeCanvasHistory: (state: typeof initialCanvasActionToolsStates, action: PayloadAction<string[][]>) => (
@@ -64,18 +85,20 @@ const canvasActionToolsReducer = createSlice({
                 ...state,
                 historyIndex: action.payload
             }
-        )
+        ),
     }
 })
 
 export const {
     triggerEraseMode,
+    triggerColorFillMode,
+    triggerCanvasDragMode,
+    triggerDrawingMode,
     addToCanvasHistory,
     clearCanvasHistory,
     initializeCanvasHistory,
     undo,
     redo,
-    triggerColorFillMode,
     updateHistoryIndex
 } = canvasActionToolsReducer.actions
 
