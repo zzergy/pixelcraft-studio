@@ -47,21 +47,25 @@ const LeftNav = () => {
                     icon={faRotateLeft}
                     onClick={() => { handleUndoRedoClick('undo') }}
                     isDisabled={canvasHistory.length === 1 || hasCanvas === canvasHistory[0]}
+                    tooltipText='Undo'
                 />
                 <ToolButton
                     icon={faRotateRight}
                     onClick={() => { handleUndoRedoClick('redo') }}
                     isDisabled={hasCanvas === canvasHistory[canvasHistory.length - 1]}
+                    tooltipText='Redo'
                 />
                 <ToolButton
                     icon={faPencil}
                     onClick={handlePencilClick}
                     isActive={isDrawingMode}
+                    tooltipText='Pencil'
                 />
                 <ToolButton
                     icon={faHand}
                     onClick={handleDrag}
                     isActive={isCanvasDragMode}
+                    tooltipText='Move Canvas'
                 />
                 <ColorPicker />
                 <ToolButton
@@ -69,12 +73,14 @@ const LeftNav = () => {
                     onClick={handleEraserClick}
                     isActive={isEraseMode}
                     isDisabled={canvasHistory.length === 1}
+                    tooltipText='Eraser'
                 />
                 <ToolButton
                     icon={faFillDrip}
                     onClick={handleColorfillClick}
                     isActive={isColorFillMode}
                     isDisabled={!hasCanvas}
+                    tooltipText='Bucket Tool'
                 />
             </>
             }
