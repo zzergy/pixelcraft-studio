@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Header from "../../Shared/Header/Header"
 import Canvas from "../Canvas/Canvas"
 import LeftNav from "../LeftNav/LeftNav"
@@ -7,9 +7,12 @@ import { RootState } from "../../store"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHeartCrack } from "@fortawesome/free-solid-svg-icons"
 import useUndoRedo from "../../hooks/useUndoRedo"
+import { setModalState } from "../../slices/modalsSlice"
 
 const CanvasPage = () => {
+    const dispatch = useDispatch();
     const { present } = useUndoRedo()
+    const { clearCanvasModal } = useSelector((state: RootState) => state.modalsOpenState)
     const canvasParameters = useSelector((state: RootState) => state.canvasData)
     const { drawingColor } = canvasParameters
 
@@ -22,7 +25,7 @@ const CanvasPage = () => {
                 {!present ?
                     <div className={styles.emptyCanvas}>
                         <FontAwesomeIcon icon={faHeartCrack} className={styles.heart} />
-                        <p className={styles.text}>Oops! No canvas found!</p>
+                        <div className={styles.emptyText}>Oops! No canvas found! &nbsp; <p onClick={() => dispatch(setModalState({ createCanvasModal: true }))} className={styles.link}>Create one here.</p></div>
                     </div> :
                     <Canvas drawingColor={drawingColor} canvasGrid={present} />
                 }

@@ -15,12 +15,18 @@
 
             .heart {
                 color: var(--error);
-                font-size: 80px;
-                margin: 6px;
+                font-size: 8em;
+                margin: 20px;
             }
 
-            .text {
+            .emptyText {
+                display: flex;
                 color: #ffffffa1;
+
+                .link {
+                    color: var(--primary);
+                    cursor: pointer;
+                }
             }
         }
     }
