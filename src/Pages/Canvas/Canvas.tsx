@@ -103,7 +103,6 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
         addToHistory(updatedPixels)
     }
 
-
     return (
         <div
             ref={canvasRef}
@@ -111,8 +110,6 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
             style={{
                 position: 'absolute',
                 transform: `translate(${canvasPosition.x}px, ${canvasPosition.y}px)`
-                // left: canvasPosition.x,
-                // top: canvasPosition.y
             }}
             onMouseDown={(event) => { isCanvasDragMode && handleMouseDown(event) }}
         >
@@ -122,7 +119,7 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
                         <div
                             key={yIndex}
                             className={styles.canvasColumn}
-                            style={{ background: pixelColor, borderColor: gridColor, cursor: cursorGrab, }}
+                            style={{ background: pixelColor, borderColor: gridColor, cursor: cursorGrab }}
                             onClick={() => handlePixelClick(xIndex, yIndex)}
                         >
                         </div>
