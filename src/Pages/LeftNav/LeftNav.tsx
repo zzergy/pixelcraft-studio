@@ -7,6 +7,7 @@ import { faEraser, faFillDrip, faPencil, faRotateLeft, faRotateRight, faHand } f
 import { useDispatch, useSelector } from 'react-redux'
 import { triggerCanvasDragMode, triggerColorFillMode, triggerDrawingMode, triggerEraseMode } from '../../slices/canvasActionToolsSlice'
 import { RootState } from '../../store'
+import { useEffect } from 'react'
 
 const LeftNav = () => {
     const { present: hasCanvas } = useUndoRedo()
@@ -34,9 +35,36 @@ const LeftNav = () => {
         dispatch(triggerColorFillMode(!isColorFillMode))
     }
 
-    const handleDrag = () => {
+    const handleDragClick = () => {
         dispatch(triggerCanvasDragMode(!isCanvasDragMode))
     }
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key.toLowerCase()
+
+            if (event.ctrlKey && event.shiftKey && key === 'Z') {
+                handleUndoRedoClick('redo');
+            } else if (event.ctrlKey && key === 'z') {
+                handleUndoRedoClick('undo');
+            } else if (key === 'p') {
+                handlePencilClick()
+            } else if (key === 'h') {
+                handleDragClick()
+            } else if (key === 'g') {
+                handleColorfillClick()
+            } else if (key === 'e') {
+                handleEraserClick()
+            }
+        }
+
+        document.addEventListener('keydown', handleKeyDown)
+
+        return () => {
+            //Cleanup
+            document.removeEventListener('keydown', handleKeyDown)
+        }
+    }, [isEraseMode, isColorFillMode, isCanvasDragMode, isDrawingMode, useUndoRedo])
 
     return (
         <div className={styles.container}>
@@ -63,7 +91,7 @@ const LeftNav = () => {
                 />
                 <ToolButton
                     icon={faHand}
-                    onClick={handleDrag}
+                    onClick={handleDragClick}
                     isActive={isCanvasDragMode}
                     tooltipText='Move Canvas'
                 />
