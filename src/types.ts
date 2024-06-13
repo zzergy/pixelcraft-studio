@@ -9,6 +9,7 @@ export interface CanvasData {
     baseColor: string,
     gridColor: string,
     drawingColor: string,
+    pencilSize: OddPixelSize,
     pixelsGrid: string[][],
     canvasPosition: CanvasPosition
 }
@@ -38,6 +39,8 @@ export const PIXEL_WIDTH = 10
 export const PIXEL_HEIGHT = 10
 export const LEFT_NAV_WIDTH = 40
 export const TOP_NAV_HEIGHT = 40
+
+export type OddPixelSize = 1 | 3 | 5 | 7 | 9;
 
 //allows you to get a property from another interface into your type
 export type Dimensions = Pick<CanvasData, "rows" | 'columns'>

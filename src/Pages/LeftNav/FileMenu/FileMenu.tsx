@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover } from "antd"
 import { useRef, useState } from "react"
 import styles from './FileMenu.module.scss'
-import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { faFile as faFileRegular } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch, useSelector } from "react-redux";
 import { setModalState } from "../../../slices/modalsSlice";

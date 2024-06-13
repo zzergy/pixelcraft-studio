@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { CanvasData, CanvasPosition, Dimensions } from "../types";
+import { CanvasData, CanvasPosition, Dimensions, OddPixelSize } from "../types";
 
 const initialCanvasData: CanvasData = {
   rows: 0,
@@ -8,6 +8,7 @@ const initialCanvasData: CanvasData = {
   gridColor: '#ededed',
   pixelsGrid: [[]],
   drawingColor: '#fafa',
+  pencilSize: 1,
   canvasPosition: { x: 0, y: 0 }
 }
 
@@ -61,6 +62,12 @@ const canvasDataReducer = createSlice({
         ...state,
         canvasPosition: action.payload
       }
+    ),
+    setPencilSize: (state: typeof initialCanvasData, action: PayloadAction<OddPixelSize>) => (
+      {
+        ...state,
+        pencilSize: action.payload
+      }
     )
   }
 })
@@ -72,7 +79,8 @@ export const {
   clearCanvas,
   changeDrawingColor,
   setCanvasGridColor,
-  setCanvasPosition
+  setCanvasPosition,
+  setPencilSize
 } = canvasDataReducer.actions
 
 export default canvasDataReducer.reducer

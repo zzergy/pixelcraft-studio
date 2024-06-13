@@ -5,7 +5,7 @@ import { setCanvasPosition, setPixelsGrid } from "../../slices/canvasSlice";
 import useUndoRedo from '../../hooks/useUndoRedo';
 import { updateHistoryIndex } from '../../slices/canvasActionToolsSlice';
 import { useEffect, useRef, useState } from 'react';
-import { LEFT_NAV_WIDTH, TOP_NAV_HEIGHT } from '../../types';
+import { LEFT_NAV_WIDTH, OddPixelSize, TOP_NAV_HEIGHT } from '../../types';
 import useCalculateCenterPosition from '../../hooks/useCalculateCenterPosition';
 
 interface CanvasProps {
@@ -24,7 +24,7 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const { canvasPosition } = useSelector((state: RootState) => state.canvasData)
     const dispatch = useDispatch()
     const { addToHistory, present, canvasHistory } = useUndoRedo()
-    const { gridColor, baseColor, rows, columns } = canvasParameters
+    const { gridColor, baseColor, rows, columns, pencilSize } = canvasParameters
 
     const { centerX, centerY } = useCalculateCenterPosition(rows, columns)
     const [relPosition, setRelPosition] = useState<RelPosition>({ x: null, y: null });
@@ -84,18 +84,34 @@ const Canvas = ({ drawingColor, canvasGrid }: CanvasProps) => {
     const handlePixelClick = (xIndex: number, yIndex: number) => {
         if (!isCanvasDragMode) {
             const color = isDrawingMode || isColorFillMode ? drawingColor : baseColor
-            drawPixel(xIndex, yIndex, color)
+            drawPixel(xIndex, yIndex, color, pencilSize)
         }
     }
 
-    const drawPixel = (x: number, y: number, color: string) => {
+    const drawPixel = (x: number, y: number, color: string, pixelSize: OddPixelSize) => {
         let updatedPixels: string[][] = [[]];
 
         if (isColorFillMode) {
             updatedPixels = present.map((row: string[]) => row.map((pixel: string) => pixel = color))
         } else {
             updatedPixels = [...present?.map(row => [...row])];
-            updatedPixels[x][y] = color;
+
+            const halfSize = Math.floor(pixelSize / 2);
+            const startX = x - halfSize;
+            const startY = y - halfSize;
+
+            // Draw a square of pixels based on the pencil size
+            for (let i = 0; i < pixelSize; i++) {
+                for (let j = 0; j < pixelSize; j++) {
+                    const newX = startX + i;
+                    const newY = startY + j;
+
+                    // Ensure the coordinates are within the grid boundaries
+                    if (newX >= 0 && newX < updatedPixels.length && newY >= 0 && newY < updatedPixels[0].length) {
+                        updatedPixels[newX][newY] = color;
+                    }
+                }
+            }
         }
 
         dispatch(setPixelsGrid(updatedPixels))

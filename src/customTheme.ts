@@ -1,10 +1,11 @@
 import { theme } from "antd";
+const primary = "#B5B6FB"
 
 export const customTheme = {
     token: {
-        colorPrimary: "#B5B6FB",
+        colorPrimary: primary,
         colorPrimaryHover: "#c1c3f1",
-        colorInfo: "#B5B6FB",
+        colorInfo: primary,
         colorSuccess: "#00c6b3",
         colorWarning: "#ff8051",
         colorLink: "#ff6dce",
@@ -33,6 +34,18 @@ export const customTheme = {
         },
         Popover: {
             colorBgElevated: "#282828"
+        },
+        Slider: {
+            trackBg: primary,
+            handleColor: primary,
+            handleActiveColor: "#C2C2F2",
+            railBg: "rgba(242, 242, 242, 0.2)",
+            trackHoverBg: "#c1c3f1",
+            railHoverBg: "rgba(255, 255, 255, 0.23)",
+            handleSize: 6,
+            handleSizeHover: 7,
+            colorTextDescription: "#fff",
+            handleLineWidthHover: 3
         }
     },
     algorithm: theme.darkAlgorithm,

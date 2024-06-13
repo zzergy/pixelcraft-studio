@@ -7,9 +7,12 @@ import { faEraser, faFillDrip, faPencil, faRotateLeft, faRotateRight, faHand } f
 import { useDispatch, useSelector } from 'react-redux'
 import { triggerCanvasDragMode, triggerColorFillMode, triggerDrawingMode, triggerEraseMode } from '../../slices/canvasActionToolsSlice'
 import { RootState } from '../../store'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import Pencil from './Pencil/Pencil'
 
 const LeftNav = () => {
+    const [open, setOpen] = useState<boolean>(false);
+
     const { present: hasCanvas } = useUndoRedo()
     const dispatch = useDispatch();
     const { isEraseMode,
@@ -19,9 +22,7 @@ const LeftNav = () => {
     } = useSelector((state: RootState) => state.canvasActionTools)
     const { canvasHistory, undoAction, redoAction } = useUndoRedo()
 
-    const handlePencilClick = () => {
-        dispatch(triggerDrawingMode(!isDrawingMode))
-    }
+
 
     const handleEraserClick = () => {
         dispatch(triggerEraseMode(!isEraseMode))
@@ -37,6 +38,10 @@ const LeftNav = () => {
 
     const handleDragClick = () => {
         dispatch(triggerCanvasDragMode(!isCanvasDragMode))
+    }
+
+    const handlePencilClick = () => {
+        dispatch(triggerDrawingMode(!isDrawingMode))
     }
 
     useEffect(() => {
@@ -83,12 +88,7 @@ const LeftNav = () => {
                     isDisabled={hasCanvas === canvasHistory[canvasHistory.length - 1]}
                     tooltipText='Redo'
                 />
-                <ToolButton
-                    icon={faPencil}
-                    onClick={handlePencilClick}
-                    isActive={isDrawingMode}
-                    tooltipText='Pencil'
-                />
+                <Pencil />
                 <ToolButton
                     icon={faHand}
                     onClick={handleDragClick}
