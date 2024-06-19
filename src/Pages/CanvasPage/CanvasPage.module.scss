@@ -1,6 +1,6 @@
 .container {
     height: inherit;
-    background-color: var(--medium-gray);
+    background-color: var(--empty-background);
 
     .content {
         display: flex;
@@ -14,7 +14,7 @@
             align-items: center;
 
             .heart {
-                color: var(--error);
+                color: #bb2c4a;
                 font-size: 8em;
                 margin: 20px;
             }

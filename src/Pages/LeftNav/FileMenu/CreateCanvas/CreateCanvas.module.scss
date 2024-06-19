@@ -7,7 +7,7 @@
     padding: 12px 0;
 
     .label {
-        color: var(--light);
+        color: var(--text);
         font-size: 14px;
         margin: 12px 0 6px 0;
 
@@ -25,7 +25,7 @@
             border-radius: 6px;
             border: 1px solid var(--hover-gray);
 
-            background: var(--medium-gray);
+            background: var(--empty-background);
             color: var(--light);
 
             ::selection {
@@ -41,6 +41,7 @@
 
             &.error {
                 color: var(--error);
+                border: 1px solid;
                 border-color: var(--error);
             }
         }
@@ -54,6 +55,7 @@
     .group {
         display: flex;
         justify-content: space-between;
+        padding-top: 16px;
 
         .presetCanvasesContainer {
             display: flex;
@@ -61,7 +63,7 @@
 
             .canvasSizes {
                 font-size: 12px;
-                background: var(--medium-gray);
+                background: var(--empty-background);
                 width: 60px;
                 height: 40px;
                 display: flex;

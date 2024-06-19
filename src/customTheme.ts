@@ -1,17 +1,24 @@
 import { theme } from "antd";
-const primary = "#B5B6FB"
+
+const primary = "#4148ff"
+const primaryHover = "#7176FF"
+const modalGray = "#181818"
+const success = "#00c6b3"
+const warning = "#ff8051"
+const error = "#f44269"
+const text = "#ededed"
 
 export const customTheme = {
     token: {
         colorPrimary: primary,
-        colorPrimaryHover: "#c1c3f1",
+        colorPrimaryHover: primaryHover,
         colorInfo: primary,
-        colorSuccess: "#00c6b3",
-        colorWarning: "#ff8051",
+        colorSuccess: success,
+        colorWarning: warning,
         colorLink: "#ff6dce",
-        colorError: "#f44269",
+        colorError: error,
         colorTextBase: "#292929",
-        colorText: '#ffffff'
+        colorText: text
     },
     components: {
         Tooltip: {
@@ -21,19 +28,19 @@ export const customTheme = {
             controlHeight: 12
         },
         Modal: {
-            contentBg: "#282828",
-            headerBg: "#282828",
-            titleColor: "#ffffff",
+            contentBg: modalGray,
+            headerBg: modalGray,
+            titleColor: text,
             colorIcon: "rgba(255, 255, 255, 0.45)",
             colorIconHover: "rgb(255, 255, 255)",
-            colorText: "#ffffff"
+            colorText: text
         },
         Button: {
             "colorTextDisabled": "rgba(255, 255, 255, 0.35)",
             defaultBg: '#282828'
         },
         Popover: {
-            colorBgElevated: "#282828"
+            colorBgElevated: modalGray
         },
         Slider: {
             trackBg: primary,
