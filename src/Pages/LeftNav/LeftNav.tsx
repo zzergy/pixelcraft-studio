@@ -46,7 +46,9 @@ const LeftNav = () => {
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            const key = event.key.toLowerCase()
+            const key = event.key?.toLowerCase()
+
+            if (!key) return;
 
             if (event.ctrlKey && event.shiftKey && key === 'Z') {
                 handleUndoRedoClick('redo');
