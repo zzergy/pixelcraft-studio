@@ -15,7 +15,7 @@ export const customTheme = {
         colorInfo: primary,
         colorSuccess: success,
         colorWarning: warning,
-        colorLink: "#ff6dce",
+        colorLink: primary,
         colorError: error,
         colorTextBase: "#292929",
         colorText: text

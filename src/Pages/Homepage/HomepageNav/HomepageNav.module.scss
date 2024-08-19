@@ -1,0 +1,33 @@
+.container {
+    box-shadow: var(--box-shadow-nav);
+    background-color: var(--homepage-nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2em 2em;
+
+    a:link {
+        text-decoration: none !important;
+    }
+
+    .logoContainer {
+        display: flex;
+        align-items: center;
+
+        .title {
+            color: var(--text);
+        }
+
+        .logo {
+            cursor: pointer;
+            width: 34px;
+            margin-right: 6px;
+        }
+    }
+
+    .buttons {
+        .signInButton {
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+import { Button } from 'antd'
+import logo from '../../../images/logoFlask.png'
+import styles from './HomepageNav.module.scss'
+import { Link } from 'react-router-dom'
+import { homepage } from '../../../routes'
+
+const HomepageNav = () => {
+    return (
+        <div className={styles.container}>
+            <Link to={homepage}>
+                <div className={styles.logoContainer}>
+                    <img src={logo} alt='logo' className={styles.logo} />
+                    <h4 className={styles.title}>Pixelcraft Studio</h4>
+                </div>
+            </Link>
+
+            <div className={styles.buttons}>
+                <Button className={styles.signInButton} type="text">Sign Up</Button>
+                <Button className={styles.signInButton} type="primary">Sign In</Button>
+            </div>
+        </div>
+    )
+}
+
+export default HomepageNav

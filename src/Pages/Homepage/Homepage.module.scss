@@ -1,41 +1,69 @@
 @import "../../stylingVariables";
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-image: url("../../images/purple-background.jpeg");
-    background-size: cover;
-    background-position: top;
     height: 100%;
     width: 100%;
+    background-color: var(--homepage-background);
 
     button {
         margin-top: 20px;
     }
 
-    .blurContainer {
-        backdrop-filter: blur(6px);
+    .content {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 600px;
-        padding: 24px 40px;
-        box-shadow: var(--box-shadow-homepage);
-        color: var(--text);
-        border-radius: 8px;
-        border: 2px solid rgba(255, 255, 255, 0.322);
-    }
+        height: calc(100vh - 57px);
+        justify-content: space-evenly;
 
-    .title {
-        @extend .span;
-        padding-bottom: 12px;
-    }
-    .span {
-        color: #45388b;
-        text-align: center;
-        margin-top: 18px;
-        letter-spacing: 1px;
+        .hero {
+            display: flex;
+            align-items: center;
+            padding: 0 3em;
+
+            .slogan {
+                max-width: 80%;
+            }
+
+            .laptop {
+                max-width: 60%;
+            }
+
+            .description {
+                color: var(--text);
+                padding-top: 1.5em;
+            }
+        }
+
+        .cardsContainer {
+            display: flex;
+            gap: 4em;
+            justify-content: center;
+            align-items: center;
+            padding: 0 3em;
+
+            .card {
+                .topSection {
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 16px;
+
+                    .icon {
+                        width: 50px;
+                        height: 50px;
+                        padding-right: 12px;
+                    }
+
+                    .heading {
+                        font-size: 24px;
+                        color: var(--secondary);
+                    }
+                }
+
+                .text {
+                    font-size: 16px;
+                    color: var(--text);
+                }
+            }
+        }
     }
 }
