@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/pixel-perfect/static/css/main.b84ea03e.css",
+    "main.css": "/pixel-perfect/static/css/main.aaa104f5.css",
     "main.js": "/pixel-perfect/static/js/main.a77f265b.js",
     "static/media/Ubuntu-Regular.ttf": "/pixel-perfect/static/media/Ubuntu-Regular.1cbb1b79a23478cc89ad.ttf",
     "static/media/laptop.png": "/pixel-perfect/static/media/laptop.8424c8e14f7c7f30c50b.png",
@@ -10,11 +10,11 @@
     "static/media/export.svg": "/pixel-perfect/static/media/export.53d15e0d9bb615d9cac8eb60b26459fb.svg",
     "static/media/computerIcon.svg": "/pixel-perfect/static/media/computerIcon.d24fe94a807db24c402dfde499d87693.svg",
     "index.html": "/pixel-perfect/index.html",
-    "main.b84ea03e.css.map": "/pixel-perfect/static/css/main.b84ea03e.css.map",
+    "main.aaa104f5.css.map": "/pixel-perfect/static/css/main.aaa104f5.css.map",
     "main.a77f265b.js.map": "/pixel-perfect/static/js/main.a77f265b.js.map"
   },
   "entrypoints": [
-    "static/css/main.b84ea03e.css",
+    "static/css/main.aaa104f5.css",
     "static/js/main.a77f265b.js"
   ]
 }
