@@ -1,15 +1,12 @@
 --- TODO'S ---
-- limit the undo action - DONE
-- Set the canvas history start array properly:
-Currently its set to [[[]]] but it should be initiated with the blank canvas when the canvas is created - DONE 
-- Color Picker - DONE
 - User
 - add a field when creating a canvas to be able to select the base color of it 
 - zoom in/out
 - min resolution support screen
-- redo the routing error design - DONE
-- bucket tool - DONE
-- disable undo redo when you cant undo/redo anymore - DONE
+- Add a cheat sheet for the keyboard shortcuts (can be pinned and unpinned from the screen)
+- add a warning if you click on the create canvas (canvas will be deleted when the new canvas is created)
+- export functionality
+- rework the routing error page
 
 --- BUGS ---
 - 
