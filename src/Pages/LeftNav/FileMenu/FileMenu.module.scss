@@ -12,6 +12,9 @@
 .icon {
     &.selectable {
         cursor: pointer;
+        &:hover {
+            background-color: var(--hover);
+        }
     }
 }
 

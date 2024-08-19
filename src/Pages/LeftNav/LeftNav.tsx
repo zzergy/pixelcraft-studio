@@ -7,12 +7,10 @@ import { faEraser, faFillDrip, faPencil, faRotateLeft, faRotateRight, faHand } f
 import { useDispatch, useSelector } from 'react-redux'
 import { triggerCanvasDragMode, triggerColorFillMode, triggerDrawingMode, triggerEraseMode } from '../../slices/canvasActionToolsSlice'
 import { RootState } from '../../store'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Pencil from './Pencil/Pencil'
 
 const LeftNav = () => {
-    const [open, setOpen] = useState<boolean>(false);
-
     const { present: hasCanvas } = useUndoRedo()
     const dispatch = useDispatch();
     const { isEraseMode,
