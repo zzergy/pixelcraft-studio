@@ -1,0 +1,17 @@
+.errorMessage {
+    font-size: small;
+    color: var(--error);
+    padding: 4px 0 0 12px;
+}
+
+.required {
+    color: var(--error);
+    font-weight: bold;
+    vertical-align: baseline;
+}
+
+.input {
+    padding: 12px 12px;
+    width: 20rem;
+    border-radius: 12px;
+}
