@@ -1,52 +1,57 @@
 export interface CanvasPosition {
-    x: number,
-    y: number
+  x: number;
+  y: number;
 }
 
 export interface CanvasData {
-    rows: number,
-    columns: number,
-    baseColor: string,
-    gridColor: string,
-    drawingColor: string,
-    pencilSize: OddPixelSize,
-    pixelsGrid: string[][],
-    canvasPosition: CanvasPosition
+  rows: number;
+  columns: number;
+  baseColor: string;
+  gridColor: string;
+  drawingColor: string;
+  pencilSize: OddPixelSize;
+  pixelsGrid: string[][];
+  canvasPosition: CanvasPosition;
 }
 
 export interface ModalStates {
-    deleteCanvasModal?: boolean,
-    createCanvasModal?: boolean,
-    clearCanvasModal?: boolean
+  deleteCanvasModal?: boolean;
+  createCanvasModal?: boolean;
+  clearCanvasModal?: boolean;
 }
 
 export enum ModalTypes {
-    clear = 'clearCanvasModal',
-    create = 'createCanvasModal',
-    delete = 'deleteCanvasModal'
+  clear = "clearCanvasModal",
+  create = "createCanvasModal",
+  delete = "deleteCanvasModal",
 }
 
 export interface CanvasActionTools {
-    isDrawingMode: boolean,
-    isEraseMode: boolean,
-    isColorFillMode: boolean,
-    isCanvasDragMode: boolean,
-    canvasHistory: string[][][],
-    historyIndex: number
+  isDrawingMode: boolean;
+  isEraseMode: boolean;
+  isColorFillMode: boolean;
+  isCanvasDragMode: boolean;
+  canvasHistory: string[][][];
+  historyIndex: number;
 }
 
-export const PIXEL_WIDTH = 10
-export const PIXEL_HEIGHT = 10
-export const LEFT_NAV_WIDTH = 40
-export const TOP_NAV_HEIGHT = 40
+export const PIXEL_WIDTH = 10;
+export const PIXEL_HEIGHT = 10;
+export const LEFT_NAV_WIDTH = 40;
+export const TOP_NAV_HEIGHT = 40;
 
 export type OddPixelSize = 1 | 3 | 5 | 7 | 9;
 
 //allows you to get a property from another interface into your type
-export type Dimensions = Pick<CanvasData, "rows" | 'columns'>
+export type Dimensions = Pick<CanvasData, "rows" | "columns">;
 
 export interface SignUpInitialValues {
-    email: string, 
-    password: string, 
-    confirmPassword: string
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface SignInInitialValues {
+  email: string;
+  password: string;
 }
